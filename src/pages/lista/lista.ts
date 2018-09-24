@@ -30,15 +30,15 @@ export class ListaPage {
         let data = a.payload.doc.data();
         let id = a.payload.doc.id;
         this.idLista = id;
-        console.log(id, data, this.idLista);
+        console.log(id, data);
         return { id, ...data };            
       }))            
     )
   }
   
   
-  addItem() {
-    this.navCtrl.push(AddItemPage,this.idLista);
+  btAddItem() {
+    this.navCtrl.push(AddItemPage,{id:this.idLista});
   }
     
   
