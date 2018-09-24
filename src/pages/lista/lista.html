@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{lista.nome_lista}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>  
+  <table class="tabela">
+    <tr>
+      <th>Item</th>
+      <th style="padding-left: 25%">Quantidade</th>
+      <th style="padding-left: 9%">Comprado</th>
+    </tr>
+  </table>
+
+  <table *ngFor="let l of lista | async">
+    <tr *ngFor="let i of l.itens">
+      <td class="coluna1">{{i.nome_item}}</td>
+        <td>
+          <button ion-button class="botaoLista" (click)="diminuirQtd(l.id,i)">-</button> 
+          <input type="text" class="texto" value="{{i.qtd}}"/> 
+          <button ion-button class="botaoLista" (click)="aumentarQtd(l.id,i)">+</button>
+        </td>
+        <td class="coluna3">
+          <ion-checkbox color="secondary" checked="true"></ion-checkbox>
+        </td>
+    </tr>
+  </table>
+  
+  <ion-fab bottom right>
+    <button ion-fab collor="primary" (click)="addItem()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+
+
+
+
+
+</ion-content>

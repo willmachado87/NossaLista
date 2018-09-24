@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>addItem</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+<table>
+    <tr>
+      <td>Nome:</td>
+      <td><input type="text" style="margin-left: 2%; width: 88%;" [(ngModel)]="nome"> </td> 
+    </tr>
+
+    <tr>
+      <td>Quantidade:</td>
+      <td>
+        <button ion-button class="botaoLista" >-</button>
+        <input type="text" class="texto2" [(ngModel)]="qtd"/>
+        <button ion-button class="botaoLista" >+</button>
+      </td>            
+    </tr>
+
+    <tr>
+        <td style="float: right;">Observação:</td>
+        <td><textarea [(ngModel)]="obs" rows="10" cols="30" style="margin-left: 2%; margin-top: 3%;"></textarea></td>
+    </tr>
+  </table>
+  <br/><br/><br/>  
+  <button ion-button full (click)="adicionar()">Adiciona na Lista</button>
+
+
+
+
+</ion-content>
