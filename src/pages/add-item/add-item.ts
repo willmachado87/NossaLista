@@ -15,11 +15,33 @@ import { item } from '../lista/model';
 })
 export class AddItemPage {
 
-  
+  item;
   nome_item:string;
-  qtd: number;
-  obs:string;  
+  nome_antigo:string;
+  qtd: number = 0;
+  obs:string;
+  comprado:boolean;  
   idLista:string;
+  editar:boolean;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private bd: AngularFirestore) {
+    this.editar = navParams.get("editar");   
+    
+    if(this.editar == true){
+      this.idLista = navParams.get("id");
+      this.item = navParams.get("i");
+      this.nome_item = this.item.nome_item;
+      this.nome_antigo = this.item.nome_item;
+      this.qtd = this.item.qtd;
+      this.obs = this.item.obs;
+      this.comprado = this.item.comprado;
+      //this.editar = false;
+      console.log("recebeu = " + this.idLista + " e:" + this.item.nome_item +" Editar: "+ this.editar);      
+    }else{
+      this.idLista = navParams.get("id");
+    }  
+    
+  }
   
 
   addItem(){
@@ -28,10 +50,12 @@ export class AddItemPage {
     refdoc.doc(this.idLista).ref.get().then(c => {
       if (c.exists) {        
         let l2 = c.data().itens;       
-        let a={nome_item:this.nome_item, qtd:this.qtd, obs:this.obs, comprado:false};     
-        l2.push(a);    
+        let a = {nome_item:this.nome_item, qtd:this.qtd, obs:this.obs, comprado:false};
+
+        const indice = l2.findIndex(obj => obj.nome_item == this.nome_antigo);
+        let result = (this.editar == false ) ? l2.push(a) : l2.splice(indice, 1, a);            
         refdoc.doc(this.idLista).update({ itens: l2 }); 
-       console.log(l2);
+        console.log(l2);
 
       } else {
        console.log("Documento n encontrado!");
@@ -40,10 +64,32 @@ export class AddItemPage {
     this.navCtrl.setRoot(ListaPage);     
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private bd: AngularFirestore) {
-    this.idLista = navParams.get("id");
-    console.log("recebeu = " + this.idLista);
-    
+
+  removeItem(i){    
+    let refdoc = this.bd.collection('listas');
+    refdoc.doc(this.idLista).ref.get().then(c => {
+      if (c.exists) {        
+        let l2 = c.data().itens;       
+        const indice = l2.findIndex(obj => obj.nome_item == this.item.nome_item);        
+        l2.splice(indice, 1);            
+        refdoc.doc(this.idLista).update({ itens: l2 }); 
+        console.log(l2);
+
+      } else {
+       console.log("Documento n encontrado!");
+      }
+    })    
+    this.navCtrl.setRoot(ListaPage);     
+  }
+
+  //diminiu 1 do item
+  diminuirQtd() {
+    this.qtd--;    
+  }
+
+  //aumenta 1 do item
+  aumentarQtd(id: string, item: item) {
+    this.qtd++;
   }
 
  

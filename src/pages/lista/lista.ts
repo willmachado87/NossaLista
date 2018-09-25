@@ -1,3 +1,4 @@
+
 import { Observable } from 'rxjs-compat/Observable';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Component } from '@angular/core';
@@ -38,43 +39,17 @@ export class ListaPage {
   
   
   btAddItem() {
-    this.navCtrl.push(AddItemPage,{id:this.idLista});
+    this.navCtrl.push(AddItemPage,{id:this.idLista, editar:false});
+  }
+
+  editarItem(i){
+    console.log(i);    
+    this.navCtrl.push(AddItemPage,{i, id:this.idLista, editar:true});
   }
     
   
 
-  //diminiu 1 do item
-  diminuirQtd(id: string, item: item) {
-    let refdoc = this.bd.collection('listas');
-    refdoc.doc(id).ref.get().then(c => {
-      if (c.exists) {  
-        let l2 = c.data().itens;
-        item.qtd--;
-        const indice = l2.findIndex(obj => obj.nome_item == item.nome_item)
-        l2.splice(indice, 1, item);    
-        refdoc.doc(id).update({ itens: l2 });         
-
-      } else {
-        console.log("Documento n encontrado!");
-      }
-    })
-  }
-
-  //aumenta 1 do item
-  aumentarQtd(id: string, item: item) {
-    let refdoc = this.bd.collection('listas');
-    refdoc.doc(id).ref.get().then(c => {
-      if (c.exists) {  
-        let l2 = c.data().itens;
-        item.qtd++;
-        const indice = l2.findIndex(obj => obj.nome_item == item.nome_item)
-        l2.splice(indice, 1, item);    
-        refdoc.doc(id).update({ itens: l2 });
-      } else {
-        console.log("Documento não encontrado!");
-      }
-    })
-  }
+  
 
 
 

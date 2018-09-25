@@ -16,9 +16,9 @@
     <tr>
       <td>Quantidade:</td>
       <td>
-        <button ion-button class="botaoLista">-</button>
-        <input type="text" class="texto2" [(ngModel)]="qtd" />
-        <button ion-button class="botaoLista">+</button>
+        <button ion-button class="botaoLista" (click)="diminuirQtd()">-</button> 
+        <input type="text" class="texto" value="{{qtd}}"/> 
+        <button ion-button class="botaoLista" (click)="aumentarQtd()">+</button>
       </td>
     </tr>
 
@@ -28,8 +28,9 @@
     </tr>
   </table>
   <br /><br /><br />
-  <button ion-button full (click)="addItem()">Adiciona na Lista</button>
-
+  <button ion-button full (click)="addItem()">Salvar</button>
+  
+  <button ion-button full color="danger" (click)="removeItem()">Deletar</button>
 
 
 
