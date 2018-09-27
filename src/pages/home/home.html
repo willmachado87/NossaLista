@@ -1,19 +1,13 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Listas</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <ion-list-header>
-      usuarios
-    </ion-list-header>
-    <ion-item  *ngFor="let i of lista | async">
-      
-      <p>{{i.nome}}</p> 
-      <p>{{i.idade}}</p> 
-      
+  <ion-list>    
+    <ion-item  *ngFor="let i of lista | async">      
+      <p (click)="goList(i.id)">{{i.nome_lista}}</p>      
     </ion-item>
   </ion-list>
 </ion-content>

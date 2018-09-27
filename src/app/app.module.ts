@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+
+
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AddItemPage } from './../pages/add-item/add-item';
@@ -14,12 +14,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { ListaPage } from '../pages/lista/lista';
+import { PerfilPage } from '../pages/perfil/perfil';
 
 @NgModule({
   declarations: [
-    MyApp,
-    AboutPage,
-    ContactPage,
+    MyApp,    
+    PerfilPage,
     HomePage,
     TabsPage,
     ListaPage,
@@ -27,7 +27,8 @@ import { ListaPage } from '../pages/lista/lista';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),AngularFireModule.initializeApp({
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp({
       apiKey: "AIzaSyABjL2CacaoEkx6et70ssq8y_27DocoRfo",
       authDomain: "teste-fb2.firebaseapp.com",
       databaseURL: "https://teste-fb2.firebaseio.com",
@@ -35,14 +36,13 @@ import { ListaPage } from '../pages/lista/lista';
       storageBucket: "teste-fb2.appspot.com",
       messagingSenderId: "953640725622"
     }),
-    AngularFirestoreModule
+    AngularFirestoreModule.enablePersistence()
     
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    AboutPage,
-    ContactPage,
+    MyApp,    
+    PerfilPage,
     HomePage,
     TabsPage,
     ListaPage,

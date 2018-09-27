@@ -17,9 +17,9 @@
     
     <tr *ngFor="let i of l.itens">
       <td class="coluna1"><label (click)="editarItem(i)">{{i.nome_item}}</label></td>
-        <td class="coluna2"><Label>{{i.qtd}}</Label></td> 
+        <td class="coluna2"><Label (click)="editarItem(i)">{{i.qtd}}</Label></td> 
         <td class="coluna3">
-          <ion-checkbox color="secondary" checked="true"></ion-checkbox>
+          <ion-checkbox color="secondary" checked="{{i.comprado}}" (click)="comprou(l.id,i)"></ion-checkbox>
         </td>
     </tr>
   </table>
