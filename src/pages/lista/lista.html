@@ -13,9 +13,9 @@
     </tr>
   </table>
 
-  <table *ngFor="let l of lista | async">
+  <table >
     
-    <tr *ngFor="let i of l.itens">
+    <tr *ngFor="let i of lista"> 
       <td class="coluna1"><label (click)="editarItem(i)">{{i.nome_item}}</label></td>
         <td class="coluna2"><Label (click)="editarItem(i)">{{i.qtd}}</Label></td> 
         <td class="coluna3">

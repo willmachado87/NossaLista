@@ -1,10 +1,13 @@
+import { PerfilPage } from './../perfil/perfil';
+import { Item } from './../model';
 
 import { Observable } from 'rxjs-compat/Observable';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Item } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { map } from 'rxjs/operators';
 import { AddItemPage } from '../add-item/add-item';
+import { LoadingController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -14,27 +17,32 @@ import { AddItemPage } from '../add-item/add-item';
 
 export class ListaPage {
 
-  lista: Observable<any[]>;
+  lista=[];
   idLista: string;
   docLista: AngularFirestoreDocument;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private bd: AngularFirestore) {
-    this.getall();
-    //this.addItem();
+  private itemDoc: AngularFirestoreDocument<Item>;
+  item: Observable<Item>;
+  
+
+  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, private bd: AngularFirestore) {
+    //this.load();    
+    this.idLista = navParams.get("id");     
+    //console.log("page lista: ", this.idLista);     
+    this.getall(); 
 
   }
 
   //listar todos itens do db
   private getall() {
-    this.lista = this.bd.collection('listas').snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        let data = a.payload.doc.data();
-        let id = a.payload.doc.id;
-        this.idLista = id;
-        //console.log(id, data);
-        return { id, ...data };
-      }))
-    )
+    let refdoc = this.bd.collection('listas')
+    refdoc.doc(this.idLista).ref.get().then(c => {
+      if (c.exists) {
+        this.lista = c.data().itens;     
+      } else {
+        console.log("Documento n encontrado!");
+      }
+    });    
   }
 
 
@@ -66,9 +74,42 @@ export class ListaPage {
   }
 
   ionViewDidLoad() {
-    console.log('depois', 'ionViewDidLoad ListaPage');
-
+    console.log('depois', 'ionView DidLoad ListaPage');
+    this.getall();
   }
+  ionViewWillEnter() {
+    //$route.reload()
+    //reload();
+
+    console.log('depois', 'ionViewDid WILL ENTER ListaPage');
+    this.getall();
+    //this.load();
+    
+   }
+
+   ionViewWillLoad(){
+     //this.getall();
+     console.log('depois', 'ionViewDid WILL LOAD ListaPage');
+     this.getall();     
+   }
+
+   load() {
+    let loading = this.loadingCtrl.create({
+      spinner: 'hide',
+      content: 'Loading Please Wait...'
+    });
   
+    loading.present();
+  
+    setTimeout(() => {
+      this.navCtrl.push(PerfilPage);
+    }, 1000);
+  
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
+  }
+
+
 
 }
