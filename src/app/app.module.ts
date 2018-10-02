@@ -15,6 +15,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { ListaPage } from '../pages/lista/lista';
 import { PerfilPage } from '../pages/perfil/perfil';
+import { AddListaPage } from '../pages/add-lista/add-lista';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PerfilPage } from '../pages/perfil/perfil';
     HomePage,
     TabsPage,
     ListaPage,
-    AddItemPage
+    AddItemPage,
+    AddListaPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import { PerfilPage } from '../pages/perfil/perfil';
     HomePage,
     TabsPage,
     ListaPage,
-    AddItemPage
+    AddItemPage,
+    AddListaPage
   ],
   providers: [
     StatusBar,

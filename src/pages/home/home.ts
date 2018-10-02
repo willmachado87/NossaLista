@@ -1,3 +1,4 @@
+import { AddListaPage } from './../add-lista/add-lista';
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { NavController } from 'ionic-angular';
@@ -24,9 +25,11 @@ export class HomePage {
   }
 
   goList(id:string){
-    this.navCtrl.push(ListaPage, {id}); 
-    
-    console.log("page home: ",id);    
+    this.navCtrl.push(ListaPage, {id});        
+  }
+
+  goAddLista(){
+    this.navCtrl.push(AddListaPage); 
   }
 
   getallList() {

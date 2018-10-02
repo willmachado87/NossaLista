@@ -51,34 +51,29 @@ export class AddItemPage {
         let result = (this.editar == false ) ? l2.push(a) : l2.splice(indice, 1, a);        
         refdoc.doc(this.idLista).update({ itens: l2 }); 
         console.log(l2);
-
       } else {
        console.log("Documento n encontrado!");
       }
     })
-
     //this.navCtrl.pop();
     this.load();
-    
       
   }
 
 
   removeItem(i){    
-    let refdoc = this.bd.collection('listas')
+    let refdoc = this.bd.collection('listas');
     refdoc.doc(this.idLista).ref.get().then(c => {
       if (c.exists) {        
         let l2 = c.data().itens;      
-        const indice = l2.findIndex(obj => obj.nome_item == this.item.nome_item)      
-        l2.splice(indice, 1)           
-        refdoc.doc(this.idLista).update({ itens: l2 })
-        console.log(l2)
-
+        const indice = l2.findIndex(obj => obj.nome_item == this.item.nome_item);    
+        l2.splice(indice, 1);          
+        refdoc.doc(this.idLista).update({ itens: l2 });
       } else {
-       console.log("Documento n encontrado!")
+       console.log("Documento n encontrado!");
       }
     })    
-    this.navCtrl.setRoot(ListaPage)   
+    this.load();   
   }
 
   //diminiu 1 do item
