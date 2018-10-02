@@ -1,13 +1,23 @@
-
 <ion-header>
-
   <ion-navbar>
-    <ion-title>addLista</ion-title>
+    <ion-title>Adicionar Lista</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4><p>Nome Lista:</p></ion-col>
+      <ion-col col-8><input class="input" [(ngModel)]="nome_lista"></ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col col-4><p>Compartilhamento:</p></ion-col>
+        <ion-col col-8><input class="input" value="E-mail"></ion-col>
+    </ion-row>
+  </ion-grid>
+  <button ion-button full style="margin-bottom: 3%;" (click)="addLista()">Salvar Lista</button>
+  <button ion-button full color="danger" (click)="removeLista()">Deletar Lista</button>
+
 
 </ion-content>

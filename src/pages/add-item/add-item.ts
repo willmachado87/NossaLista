@@ -56,8 +56,7 @@ export class AddItemPage {
       }
     })
     //this.navCtrl.pop();
-    this.load();
-      
+    this.load();      
   }
 
 
@@ -107,6 +106,7 @@ export class AddItemPage {
       loading.dismiss();
     }, 1500);
   }
+
 
 
 
