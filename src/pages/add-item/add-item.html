@@ -1,28 +1,57 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>addItem</ion-title>
+    <ion-title style="text-align:center; margin-right: 10%;" *ngIf="editar == true">Editar Item</ion-title>
+    <ion-title style="text-align:center; margin-right: 10%;" *ngIf="editar == false">Novo Item</ion-title>
   </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding *ngIf="editar == false">
+  <table *ngFor="let i of itensAdd; let ind = index">    
+    <tr>
+      <td>Nome:</td>
+      <td><input class="texto3"   [(ngModel)]="i.nome_item"> </td>
+    </tr>
+
+    <tr>
+      <td>Quantidade:</td>
+      <td>
+        <button ion-button class="botaoLista" (click)="diminuirQtd(ind)">-</button> 
+        <input class="texto2" [(ngModel)]="i.qtd"/> 
+        <button ion-button class="botaoLista" (click)="aumentarQtd(ind)">+</button>
+      </td>
+    </tr>
+
+    <tr>
+      <td style="float: right;">Observação:</td>
+      <td><textarea [(ngModel)]="i.obs" rows="5" cols="30" class="texto4"></textarea></td>
+    </tr>    
+  </table>
+  <button ion-button color="secondary" (click)="adicionarOutroItem()"> + Itens</button>
+  <br /><br /><br />
+  <button ion-button full style="margin-bottom: 3%;" (click)="addItem()">Salvar</button>
+  <button ion-button full color="danger" (click)="removeItem()">Deletar</button>
+
+</ion-content>
+
+<ion-content padding *ngIf="editar == true">
   <table>
+    <!--
     <tr *ngIf="editar == true">
       <td>Nome da Lista: </td>
       <td><input class="texto3"></td>
     </tr>
-
-
+    -->
     <tr>
       <td>Nome:</td>
-      <td><input class="texto3"  [(ngModel)]="nome_item"> </td>
+      <td><input class="texto3"   [(ngModel)]="nome_item"> </td>
     </tr>
 
     <tr>
       <td>Quantidade:</td>
       <td>
         <button ion-button class="botaoLista" (click)="diminuirQtd()">-</button> 
-        <input type="text" class="texto2" value="{{qtd}}"/> 
+        <input class="texto2" [(ngModel)]="qtd"/> 
         <button ion-button class="botaoLista" (click)="aumentarQtd()">+</button>
       </td>
     </tr>
@@ -30,10 +59,10 @@
     <tr>
       <td style="float: right;">Observação:</td>
       <td><textarea [(ngModel)]="obs" rows="10" cols="30" style="margin:2% 0%"></textarea></td>
-    </tr>
+    </tr>   
   </table>
+  
   <br /><br /><br />
   <button ion-button full style="margin-bottom: 3%;" (click)="addItem()">Salvar</button>
   <button ion-button full color="danger" (click)="removeItem()">Deletar</button>
-
 </ion-content>

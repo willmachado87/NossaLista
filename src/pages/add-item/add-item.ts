@@ -20,9 +20,14 @@ export class AddItemPage {
   comprado:boolean;
   idLista:string;
   editar:boolean;
+  itensAdd:[any];
 
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, private bd: AngularFirestore) {
-    this.editar = navParams.get("editar");   
+    this.editar = navParams.get("editar");
+    this.itensAdd = [{nome_item:this.nome_item, qtd:this.qtd, obs:this.obs, comprado:false}];
+    console.log(this.editar);
+    
+       
     if(this.editar == true){
       this.idLista = navParams.get("id");
       this.item = navParams.get("i");
@@ -32,34 +37,41 @@ export class AddItemPage {
       this.obs = this.item.obs;
       this.comprado = this.item.comprado;
       //this.editar = false;
-      console.log("recebeu = " + this.idLista + " e:" + this.item.nome_item +" Editar: "+ this.editar) ;     
+      //console.log("recebeu = " + this.idLista + " e:" + this.item.nome_item +" Editar: "+ this.editar) ;     
     }else{
       this.idLista = navParams.get("id");
     }  
     
   }
   
-
+  // adiciona item
   addItem(){    
     let refdoc = this.bd.collection('listas');
-    refdoc.doc(this.idLista).ref.get().then(c => {
+    refdoc.doc(this.idLista).ref.get().then( c => {
       if (c.exists) {        
-        let l2 = c.data().itens;       
-        let a = {nome_item:this.nome_item, qtd:this.qtd, obs:this.obs, comprado:false};
+        let l2 = c.data().itens;
 
-        const indice = l2.findIndex(obj => obj.nome_item == this.nome_antigo);
-        let result = (this.editar == false ) ? l2.push(a) : l2.splice(indice, 1, a);        
-        refdoc.doc(this.idLista).update({ itens: l2 }); 
-        console.log(l2);
+        if(this.editar == false){
+          var newArray = l2.concat(this.itensAdd);
+          refdoc.doc(this.idLista).update({ itens: newArray }); 
+             
+        }else{
+          let itemEditado = {nome_item:this.nome_item, qtd:this.qtd, obs:this.obs, comprado:false};
+          const indice = l2.findIndex(obj => obj.nome_item == this.nome_antigo);
+          l2.splice(indice, 1, itemEditado);
+          console.log("editado",l2);
+          refdoc.doc(this.idLista).update({ itens: l2 });
+        } 
+        
       } else {
        console.log("Documento n encontrado!");
       }
     })
-    //this.navCtrl.pop();
-    this.load();      
+    this.navCtrl.pop();
+    //this.load();      
   }
 
-
+  //remove  item da lista
   removeItem(i){    
     let refdoc = this.bd.collection('listas');
     refdoc.doc(this.idLista).ref.get().then(c => {
@@ -71,18 +83,33 @@ export class AddItemPage {
       } else {
        console.log("Documento n encontrado!");
       }
-    })    
-    this.load();   
+    })
+    this.navCtrl.pop();    
+    //this.load();   
+  }
+
+  adicionarOutroItem(){    
+    let novoItem = {nome_item:this.nome_item, qtd:this.qtd, obs:this.obs, comprado:false};    
+    this.itensAdd.push(novoItem);   
   }
 
   //diminiu 1 do item
-  diminuirQtd() {
-    this.qtd--    
+  diminuirQtd(index:number) {
+    if(this.editar == true){
+      this.qtd--
+    }else{
+      this.itensAdd[index].qtd--;
+    }    
+         
   }
 
   //aumenta 1 do item
-  aumentarQtd(id: string, item: any) {
-    this.qtd++
+  aumentarQtd(index:number) {
+    if(this.editar == true){
+      this.qtd++
+    }else{
+      this.itensAdd[index].qtd++;
+    }     
   }
 
 

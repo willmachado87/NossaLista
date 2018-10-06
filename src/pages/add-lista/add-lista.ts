@@ -5,8 +5,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 export class Lista{
   nome_lista: String;
-  itens:[];
-  usuarios:[];
+  itens;
+  usuarios;
 
   constructor(nome_lista:string){
     this.nome_lista = nome_lista;
