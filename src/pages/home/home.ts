@@ -5,6 +5,8 @@ import { NavController } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs-compat/Observable';
 import { ListaPage } from '../lista/lista';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase';
 
 
 @Component({
@@ -15,13 +17,15 @@ export class HomePage {
   
   lista:Observable<any>;
   listaColeçao : AngularFirestoreCollection;
+  usuario:any;
 
-  constructor(public navCtrl: NavController, public bd: AngularFirestore) {
-    this.listaColeçao = bd.collection('listas');
-    //this.lista = this.listaColeçao.valueChanges(); 
-    //console.log(this.lista);
+  constructor(public navCtrl: NavController, public bd: AngularFirestore, public afb:AngularFireAuth ) {
+    this.usuario = firebase.auth().currentUser;
+    this.listaColeçao = bd.collection('listas', ref => {
+      return ref.where('usuarios','array-contains',this.usuario.uid)
+    });    
+    console.log(this.usuario);    
     this.getallList();
-
   }
 
   goList(id:string){

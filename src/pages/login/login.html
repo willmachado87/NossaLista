@@ -1,0 +1,30 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12><p style="text-align: center;">Login com E-mail</p></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6><p style="text-align: center;">E-mail:</p></ion-col>
+      <ion-col col-6><p style="text-align: center;"><input [(ngModel)]="email"></p></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-6><p style="text-align: center;">Senha:</p></ion-col>
+      <ion-col col-6><p style="text-align: center;"><input [(ngModel)]="senha"></p></ion-col>
+    </ion-row> 
+    
+    <ion-row>
+      <ion-col col-12 style="text-align: center;"><button ion-button color="primary" (click)="loguinEmailSenha()"> Entrar</button></ion-col>
+    </ion-row>
+  </ion-grid>
+  <button ion-button color="danger"full (click)="btCadastrar()">Cadastrar</button>
+  
+</ion-content>

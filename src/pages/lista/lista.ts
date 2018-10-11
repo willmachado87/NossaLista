@@ -19,17 +19,18 @@ export class ListaPage {
   
   idLista: string;
   //itemDoc: AngularFirestoreDocument;
-  lista: Observable<any>;
-  lista2:Observable<any>;
+  lista;
+  lista2:Observable<any[]>; 
   
 
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, private bd: AngularFirestore) {  
     this.idLista = navParams.get("id");       
-    this.getall();
-  }
+    this.getall();    
+  }  
 
-  //listar todos itens do db
-  private getall() {     
+  
+  private getall() {   
+    
     this.lista = this.bd.doc('listas/'+this.idLista).valueChanges();   
     this.lista2 = this.lista;
 
@@ -37,7 +38,7 @@ export class ListaPage {
       this.lista2 = u;      
       console.log("item u:", u);
       console.log("item lista: ", this.lista);                  
-     });
+    });
     
     
     

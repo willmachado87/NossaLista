@@ -3,19 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-
-
+import { LoginPage } from '../pages/login/login';
+import { CadastroLoginPage } from '../pages/cadastro-login/cadastro-login';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AddItemPage } from './../pages/add-item/add-item';
+import { ListaPage } from '../pages/lista/lista';
+import { PerfilPage } from '../pages/perfil/perfil';
+import { AddListaPage } from '../pages/add-lista/add-lista';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { ListaPage } from '../pages/lista/lista';
-import { PerfilPage } from '../pages/perfil/perfil';
-import { AddListaPage } from '../pages/add-lista/add-lista';
+import { AngularFireAuthModule} from 'angularfire2/auth';
+
+
+
 
 @NgModule({
   declarations: [
@@ -25,20 +29,23 @@ import { AddListaPage } from '../pages/add-lista/add-lista';
     TabsPage,
     ListaPage,
     AddItemPage,
-    AddListaPage
+    AddListaPage,
+    LoginPage,
+    CadastroLoginPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp({
-      apiKey: "AIzaSyABjL2CacaoEkx6et70ssq8y_27DocoRfo",
-      authDomain: "teste-fb2.firebaseapp.com",
-      databaseURL: "https://teste-fb2.firebaseio.com",
-      projectId: "teste-fb2",
-      storageBucket: "teste-fb2.appspot.com",
-      messagingSenderId: "953640725622"
+      apiKey: "AIzaSyDEb_51STc0V3l44qEr_tX0pTilipsQ0ZU",
+      authDomain: "nossalista23.firebaseapp.com",
+      databaseURL: "https://nossalista23.firebaseio.com",
+      projectId: "nossalista23",
+      storageBucket: "nossalista23.appspot.com",
+      messagingSenderId: "87417686496"
     }),
-    AngularFirestoreModule.enablePersistence()
+    AngularFirestoreModule.enablePersistence(),
+    AngularFireAuthModule
     
   ],
   bootstrap: [IonicApp],
@@ -49,7 +56,9 @@ import { AddListaPage } from '../pages/add-lista/add-lista';
     TabsPage,
     ListaPage,
     AddItemPage,
-    AddListaPage
+    AddListaPage,
+    LoginPage,
+    CadastroLoginPage
   ],
   providers: [
     StatusBar,
