@@ -4,20 +4,30 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding> 
   <ion-grid>
     <ion-row>
-      <ion-col col-4><p>Nome Lista:</p></ion-col>
-      <ion-col col-8><input class="input" [(ngModel)]="nome_lista"></ion-col>
+      <ion-col col-4> <p>Nome Lista:</p> </ion-col>
+      <ion-col col-8> <input class="input" [(ngModel)]="nome_lista"> </ion-col>
     </ion-row>
 
     <ion-row>
-        <ion-col col-4><p>Compartilhamento:</p></ion-col>
-        <ion-col col-8><input class="input" value="E-mail"></ion-col>
+        <ion-col col-12> <p>Compartilhada Lista com:</p> </ion-col>        
     </ion-row>
+    
+    <ion-row *ngFor="let i of listaUsuarios; let ind = index">
+      <ion-col col-2> <p>E-mail</p> </ion-col>
+      <ion-col col-6> <input [(ngModel)]="i.email"></ion-col>
+      <ion-col col-2> <button ion-button color="secondary" (click)="addOutroUsuario(i,ind)">+</button> </ion-col>
+      <ion-col col-2> <button ion-button color="danger" (click)="deletarUsuario(ind)">-</button> </ion-col>
+    </ion-row>
+    
+
   </ion-grid>
   <button ion-button full style="margin-bottom: 3%;" (click)="addLista()">Salvar Lista</button>
   <button ion-button full color="danger" (click)="removeLista()">Deletar Lista</button>
+
+  
 
 
 </ion-content>

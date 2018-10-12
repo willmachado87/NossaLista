@@ -25,8 +25,7 @@ export class AddItemPage {
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, private bd: AngularFirestore) {
     this.editar = navParams.get("editar");
     this.itensAdd = [{nome_item:this.nome_item, qtd:this.qtd, obs:this.obs, comprado:false}];
-    console.log(this.editar);
-    
+    console.log(this.editar);    
        
     if(this.editar == true){
       this.idLista = navParams.get("id");
@@ -44,7 +43,7 @@ export class AddItemPage {
     
   }
   
-  // adiciona item
+  // adiciona item no BD
   addItem(){    
     let refdoc = this.bd.collection('listas');
     refdoc.doc(this.idLista).ref.get().then( c => {

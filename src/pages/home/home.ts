@@ -22,6 +22,7 @@ export class HomePage {
   constructor(public navCtrl: NavController, public bd: AngularFirestore, public afb:AngularFireAuth ) {
     this.usuario = firebase.auth().currentUser;
     this.listaColeçao = bd.collection('listas', ref => {
+      //return ref.where('usuarios','array-contains',this.usuario.uid)
       return ref.where('usuarios','array-contains',this.usuario.uid)
     });    
     console.log(this.usuario);    

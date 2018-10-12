@@ -38,18 +38,7 @@ export class ListaPage {
       this.lista2 = u;      
       console.log("item u:", u);
       console.log("item lista: ", this.lista);                  
-    });
-    
-    
-    
-    // let refdoc = this.bd.collection('listas');
-    // refdoc.doc(this.idLista).ref.get().then(c => {
-    //   if (c.exists) {        
-    //     this.lista = c.data().itens;     
-    //   } else {
-    //     console.log("Documento n encontrado!");
-    //   }
-    // });    
+    });   
 
   }
 
