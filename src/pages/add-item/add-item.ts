@@ -111,19 +111,12 @@ export class AddItemPage {
     }     
   }
 
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddItemPage')
-  }
-
   load() {
     let loading = this.loadingCtrl.create({
       spinner: 'ios',
       content: 'Carregando...'
-    });
-  
-    loading.present();
-  
+    });  
+    loading.present();  
     setTimeout(() => {
       this.navCtrl.pop();
     }, 1500);
@@ -132,9 +125,4 @@ export class AddItemPage {
       loading.dismiss();
     }, 1500);
   }
-
-
-
-
-
 }

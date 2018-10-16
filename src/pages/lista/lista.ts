@@ -29,8 +29,7 @@ export class ListaPage {
   }  
 
   
-  private getall() {   
-    
+  private getall() {    
     this.lista = this.bd.doc('listas/'+this.idLista).valueChanges();   
     this.lista2 = this.lista;
 
@@ -87,7 +86,7 @@ export class ListaPage {
   }
 
   ionViewWillEnter() {
-    console.log('depois', 'ionViewDid WILL ENTER ListaPage');
+    console.log('WILL ENTER ListaPage');
     this.getall();    
   }   
 

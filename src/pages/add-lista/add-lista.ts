@@ -95,10 +95,6 @@ export class AddListaPage {
 
   removeLista(){
 
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddListaPage');
-  }
+  }  
 
 }

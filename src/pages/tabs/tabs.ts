@@ -9,13 +9,10 @@ import { PerfilPage } from './../perfil/perfil';
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
+  
+  tab1Root = HomePage;  
+  tab2Root = PerfilPage;
 
-  tab1Root = HomePage;
-  tab2Root = ListaPage;
-  tab3Root = PerfilPage;
-  
-  
-    
   constructor() {
 
   }

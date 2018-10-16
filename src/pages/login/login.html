@@ -1,11 +1,11 @@
 
-<ion-header>
+<ion-header *ngIf="autenticado == false">
   <ion-navbar>
     <ion-title>login</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding *ngIf="autenticado == false">
   <ion-grid>
     <ion-row>
       <ion-col col-12><p style="text-align: center;">Login com E-mail</p></ion-col>
@@ -22,7 +22,7 @@
     </ion-row> 
     
     <ion-row>
-      <ion-col col-12 style="text-align: center;"><button ion-button color="primary" (click)="loguinEmailSenha()"> Entrar</button></ion-col>
+      <ion-col col-12 style="text-align: center;"><button ion-button color="primary" (click)="loginEmailPassword()"> Entrar</button></ion-col>
     </ion-row>
   </ion-grid>
   <button ion-button color="danger"full (click)="btCadastrar()">Cadastrar</button>

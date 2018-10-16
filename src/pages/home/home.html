@@ -1,23 +1,22 @@
-<ion-header>
+
+<ion-header *ngIf="usuario != null">
   <ion-navbar>
     <ion-title style="text-align:center">Listas</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding *ngIf="usuario != null">
   <ion-list>    
     <ion-item  *ngFor="let i of lista | async">      
       <p (click)="goList(i.id)">{{i.nome_lista}}</p>      
     </ion-item>
   </ion-list>
 
-<ion-fab bottom right>
-  <button ion-fab collor="primary" (click)="goAddLista()">
-    <ion-icon name="add"></ion-icon>
-  </button>
-</ion-fab>
-
-
+  <ion-fab bottom right>
+    <button ion-fab collor="primary" (click)="goAddLista()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
 
 

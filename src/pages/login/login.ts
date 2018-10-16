@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Page } from 'ionic-angular/umd/navigation/nav-util';
-
-
+import { TabsPage } from '../tabs/tabs';
+import * as firebase from 'firebase';
 
 @IonicPage()
 @Component({
@@ -16,35 +16,51 @@ export class LoginPage {
 
   email: string;
   senha: string;
+  autenticado:boolean;
+  usuario: any = null;
 
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public loadCtrl: LoadingController, public afb: AngularFireAuth){
+          
+    let load = this.loadCtrl.create({spinner:'ios', content:'Carregando...'});
+    load.present();
 
-  loguinEmailSenha(){
-    let user = this.afb.auth.signInWithEmailAndPassword(this.email, this.senha)
+    firebase.auth().onAuthStateChanged( user => {       
+      this.usuario = user; // demora 500ms para processar
+      console.log("usuario: ",user);            
+    })
+
+    setTimeout(() => {
+      if (this.usuario != null) {
+        this.autenticado = true;
+        navCtrl.setRoot(TabsPage);        
+        load.dismiss();        
+      } else {
+        this.autenticado = false;        
+        load.dismiss();        
+      }      
+    },2000);    
+  }
+
+  loginEmailPassword(){
+    this.afb.auth.signInWithEmailAndPassword(this.email, this.senha)
     .then(() => {      
-      this.loading(HomePage,1500,true);      
-    }).catch();
+      this.loading(TabsPage,1500,true);      
+    }).catch( err => {
+      console.log(err);      
+    });
   }
 
   btCadastrar(){
     this.navCtrl.push(CadastroLoginPage);
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-              public loadCtrl: LoadingController, public afb: AngularFireAuth){
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
-
   loading(page:Page, time:number, root:boolean){    
     let load = this.loadCtrl.create({
       spinner: 'ios',
       content: 'Carregando...'
-    }); 
-
+    });
     load.present();
-
     if(root == true){
       setTimeout(() => {
         this.navCtrl.setRoot(page);

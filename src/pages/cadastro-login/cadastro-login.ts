@@ -49,10 +49,7 @@ export class CadastroLoginPage {
   }
 
   loading(page:Page, time:number, root:boolean){    
-    let load = this.loadCtrl.create({
-      spinner: 'ios',
-      content: 'Carregando...'
-    });
+    let load = this.loadCtrl.create({spinner:'ios',content:'Carregando...'});
     load.present();
     
     if(root == true){
