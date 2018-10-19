@@ -2,6 +2,11 @@
 Documentação geral do  projeto se encontrada
 no medium https://medium.com/@wyllmachado/documentando-um-projeto-final-de-ads-6b40b160c763
 
+a
+
+
+aa
+
 Esse documento tem como objetivo fornecendo informações e artefatos sobre a concepção do produto, o seu planejamento, as decisões arquiteturais, desenvolvimento, testes/validação e conclusões.
 
 # Como Executra o projeto
