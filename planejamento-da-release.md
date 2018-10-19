@@ -11,17 +11,18 @@ Foi utilizado o trello para fazer o controle dos backlogs e das sprints.
 ![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/infoUS.png)
 
 ## Roadmap
+Abaixo segue o planegamento das sprints
 # Sprint 1 
-![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/infoUS.png)sprint1
+![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/sprint1.JPG)
 
 # Sprint 2 
-![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/infoUS.png)sprint2
+![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/sprint2.JPG)
 
 # Sprint 3
-![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/infoUS.png)sprint3
+![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/sprint3.JPG)
 
 # Sprint 4 Atual
-![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/infoUS.png)sprint4_Atual.JPG
+![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/sprint4_Atual.JPG)
 
 
 
