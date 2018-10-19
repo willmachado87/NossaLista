@@ -1,3 +1,3 @@
 # Canvas do Produto
 
-Apresentar o BMC, PMC ou _MVP Canvas_
+![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/src/assets/imgs/canvas.jpg)
