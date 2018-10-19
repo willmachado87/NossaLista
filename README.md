@@ -1,5 +1,6 @@
 # Documentação e Artefatos
-Documentação geral do  projeto se encontrada em https://medium.com/@wyllmachado/documentando-um-projeto-final-de-ads-6b40b160c763
+Documentação geral do  projeto se encontrada em 
+https://medium.com/@wyllmachado/documentando-um-projeto-final-de-ads-6b40b160c763
 
 Esse documento tem como objetivo fornecendo informações e artefatos sobre a concepção do produto, o seu planejamento, as decisões arquiteturais, desenvolvimento, testes/validação e conclusões.
 
