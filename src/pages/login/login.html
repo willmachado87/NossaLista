@@ -1,30 +1,34 @@
 
 <ion-header *ngIf="autenticado == false">
   <ion-navbar>
-    <ion-title>login</ion-title>
+    <ion-title style="text-align: center;">Login</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding *ngIf="autenticado == false">
   <ion-grid>
     <ion-row>
-      <ion-col col-12><p style="text-align: center;">Login com E-mail</p></ion-col>
+      <ion-col col-12><p class="font1" style="padding-top: 13%;">Login com E-mail</p></ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col col-6><p style="text-align: center;">E-mail:</p></ion-col>
-      <ion-col col-6><p style="text-align: center;"><input [(ngModel)]="email"></p></ion-col>
+      <ion-col col-4><p class="font1">E-mail:</p></ion-col>
+      <ion-col col-8><input class="texto2" [(ngModel)]="email"></ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col col-6><p style="text-align: center;">Senha:</p></ion-col>
-      <ion-col col-6><p style="text-align: center;"><input [(ngModel)]="senha"></p></ion-col>
+      <ion-col col-4><p class="font1">Senha:</p></ion-col>
+      <ion-col col-8><input class="texto2" type="password" [(ngModel)]="senha"></ion-col>
     </ion-row> 
     
     <ion-row>
-      <ion-col col-12 style="text-align: center;"><button ion-button color="primary" (click)="loginEmailPassword()"> Entrar</button></ion-col>
+      <ion-col col-12 class="font1">
+        <button ion-button color="primary" (click)="loginEmailPassword()"> Entrar</button>
+        <button ion-button color="danger" (click)="btCadastrar()"> Cadastrar</button>
+      </ion-col>
+      
     </ion-row>
   </ion-grid>
-  <button ion-button color="danger"full (click)="btCadastrar()">Cadastrar</button>
+  
   
 </ion-content>

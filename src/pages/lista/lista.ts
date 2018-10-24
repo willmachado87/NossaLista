@@ -1,11 +1,9 @@
+import { AddListaPage } from './../add-lista/add-lista';
 import { PerfilPage } from './../perfil/perfil';
-
-
 import { Observable } from 'rxjs-compat/Observable';
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFirestore } from 'angularfire2/firestore';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { map } from 'rxjs/operators';
 import { AddItemPage } from '../add-item/add-item';
 import { LoadingController } from 'ionic-angular';
 
@@ -17,26 +15,25 @@ import { LoadingController } from 'ionic-angular';
 
 export class ListaPage {
   
-  idLista: string;
-  //itemDoc: AngularFirestoreDocument;
+  idLista: string;  
   lista;
-  lista2:Observable<any[]>; 
-  
+  lista2:Observable<any[]>;   
 
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, private bd: AngularFirestore) {  
     this.idLista = navParams.get("id");       
     this.getall();    
-  }  
+  } 
 
+  btEditList(){
+    this.navCtrl.push(AddListaPage,{idLista:this.idLista, editList:true});
+  }
   
   private getall() {    
     this.lista = this.bd.doc('listas/'+this.idLista).valueChanges();   
     this.lista2 = this.lista;
 
     this.lista.subscribe(u =>{
-      this.lista2 = u;      
-      console.log("item u:", u);
-      console.log("item lista: ", this.lista);                  
+      this.lista2 = u;                      
     });   
 
   }
@@ -59,8 +56,7 @@ export class ListaPage {
         let l2 = c.data().itens;
         const indice = l2.findIndex(obj => obj.nome_item == item.nome_item);
         l2.splice(indice, 1, item);
-        refdoc.doc(this.idLista).update({ itens: l2 });
-        console.log(l2);
+        refdoc.doc(this.idLista).update({ itens: l2 });        
       } else {
         console.log("Documento nao encontrado!")
       }

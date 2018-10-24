@@ -19,8 +19,15 @@ export class CadastroLoginPage {
   senha: string;
   confSenha: string
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public loadCtrl: LoadingController, public afb: AngularFireAuth,
+    public bd: AngularFirestore) {
+
+}
+
   salvarLogin(){
-    this.afb.auth.createUserWithEmailAndPassword(this.email,this.senha)
+    if(this.senha == this.confSenha){
+      this.afb.auth.createUserWithEmailAndPassword(this.email,this.senha)
     .then( ok => {      
         let usuario = firebase.auth().currentUser;
         usuario.updateProfile({
@@ -29,24 +36,16 @@ export class CadastroLoginPage {
         });
         this.loading(LoginPage,3000,true);
         setTimeout(() => {
-          let usuarioBD = {nomeDisplay: usuario.displayName, email: usuario.email, id: usuario.uid};
-          const id = this.bd.createId();
-          this.bd.collection('usuarios').doc(id).set( Object.assign({}, usuarioBD) );        
-          console.log("OI DURANTE");
+          let usuarioBD = {nomeDisplay: usuario.displayName, email: usuario.email, id: usuario.uid};          
+          this.bd.collection('usuarios').doc(usuario.uid).set( Object.assign({}, usuarioBD) );         
           firebase.auth().signOut;
         }, 3000);            
-    }).catch();   
+    }).catch();  
+    }else{
+      console.log("As senhas Digitada não coincidem ");      
+    }
+     
   } 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-              public loadCtrl: LoadingController, public afb: AngularFireAuth,
-              public bd: AngularFirestore) {
-    
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CadastroLoginPage');
-  }
 
   loading(page:Page, time:number, root:boolean){    
     let load = this.loadCtrl.create({spinner:'ios',content:'Carregando...'});
@@ -63,7 +62,11 @@ export class CadastroLoginPage {
         load.dismiss();
       }, time);
     } 
-  }   
+  } 
+  
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad CadastroLoginPage');
+  }
 
 
 }

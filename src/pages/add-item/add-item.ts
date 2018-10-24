@@ -1,4 +1,3 @@
-import { ListaPage } from './../lista/lista';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestore } from 'angularfire2/firestore';
@@ -34,13 +33,10 @@ export class AddItemPage {
       this.nome_antigo = this.item.nome_item;
       this.qtd = this.item.qtd;
       this.obs = this.item.obs;
-      this.comprado = this.item.comprado;
-      //this.editar = false;
-      //console.log("recebeu = " + this.idLista + " e:" + this.item.nome_item +" Editar: "+ this.editar) ;     
+      this.comprado = this.item.comprado;           
     }else{
       this.idLista = navParams.get("id");
-    }  
-    
+    }      
   }
   
   // adiciona item no BD

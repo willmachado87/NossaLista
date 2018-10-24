@@ -12,10 +12,12 @@ import { timeout } from 'rxjs/operators';
   templateUrl: 'perfil.html',
 })
 
-export class PerfilPage {  
+export class PerfilPage {
+  
+  user:any
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    
+    this.user = firebase.auth().currentUser;
   }
 
   logout(){

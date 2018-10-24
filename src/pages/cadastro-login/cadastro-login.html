@@ -1,29 +1,29 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Cadastro</ion-title>
+    <ion-title style="text-align: center;">Cadastro</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-grid> 
       <ion-row>
-          <ion-col col-6><p style="text-align: center;">Nome:</p></ion-col>
-          <ion-col col-6><p style="text-align: center;"><input [(ngModel)]="nome"></p></ion-col>
-        </ion-row>
+          <ion-col col-4><p class="font1">Nome:</p></ion-col>
+          <ion-col col-8><input class="texto5" [(ngModel)]="nome"></ion-col> 
+        </ion-row> 
 
     <ion-row>
-      <ion-col col-6><p style="text-align: center;">E-mail:</p></ion-col>
-      <ion-col col-6><p style="text-align: center;"><input [(ngModel)]="email"></p></ion-col>
+      <ion-col col-4><p class="font1">E-mail:</p></ion-col>
+      <ion-col col-8><input class="texto5" [(ngModel)]="email"></ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col col-6><p style="text-align: center;">Senha:</p></ion-col>
-      <ion-col col-6><p style="text-align: center;"><input [(ngModel)]="senha"></p></ion-col>
+      <ion-col col-4><p class="font1">Senha:</p></ion-col>
+      <ion-col col-8><input class="texto5" type="password" [(ngModel)]="senha"></ion-col>
     </ion-row>
 
     <ion-row>
-        <ion-col col-6><p style="text-align: center;">Repita a Senha:</p></ion-col>
-        <ion-col col-6><p style="text-align: center;"><input [(ngModel)]="confSenha"></p></ion-col>
+        <ion-col col-4><p class="font1">Repita a Senha:</p></ion-col>
+        <ion-col col-8><input  class="texto5" type="password" [(ngModel)]="confSenha"></ion-col>
       </ion-row>  
     
     <ion-row>

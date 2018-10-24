@@ -5,10 +5,14 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding *ngIf="usuario != null">
-  <ion-list>    
+<ion-content padding *ngIf="usuario != null"> 
+  <ion-list inset>    
     <ion-item  *ngFor="let i of lista | async">      
-      <p (click)="goList(i.id)">{{i.nome_lista}}</p>      
+      <p style="font-size: 17px" (click)="goList(i.id)">{{i.nome_lista}} </p>     
+        
+     <!-- <ion-icon class="iconArrow" name="ios-arrow-dropright" (click)="goList(i.id)"></ion-icon>-->
+      <ion-icon class="icoLixo" name="trash" (click)="del(i.id)"> </ion-icon> 
+             
     </ion-item>
   </ion-list>
 

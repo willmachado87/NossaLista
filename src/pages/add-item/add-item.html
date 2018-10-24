@@ -10,14 +10,14 @@
   <table *ngFor="let i of itensAdd; let ind = index">    
     <tr>
       <td>Nome:</td>
-      <td><input class="texto3"   [(ngModel)]="i.nome_item"> </td>
+      <td><input class="textoItem" [(ngModel)]="i.nome_item"> </td>
     </tr>
 
     <tr>
       <td>Quantidade:</td>
       <td>
         <button ion-button class="botaoLista" (click)="diminuirQtd(ind)">-</button> 
-        <input class="texto2" [(ngModel)]="i.qtd"/> 
+        <input class="textoItem2" [(ngModel)]="i.qtd"/> 
         <button ion-button class="botaoLista" (click)="aumentarQtd(ind)">+</button>
       </td>
     </tr>
@@ -35,23 +35,17 @@
 </ion-content>
 
 <ion-content padding *ngIf="editar == true">
-  <table>
-    <!--
-    <tr *ngIf="editar == true">
-      <td>Nome da Lista: </td>
-      <td><input class="texto3"></td>
-    </tr>
-    -->
+  <table>    
     <tr>
       <td>Nome:</td>
-      <td><input class="texto3"   [(ngModel)]="nome_item"> </td>
+      <td><input class="textoItem" [(ngModel)]="nome_item"> </td>
     </tr>
 
     <tr>
       <td>Quantidade:</td>
       <td>
         <button ion-button class="botaoLista" (click)="diminuirQtd()">-</button> 
-        <input class="texto2" [(ngModel)]="qtd"/> 
+        <input class="textoItem2" [(ngModel)]="qtd"/> 
         <button ion-button class="botaoLista" (click)="aumentarQtd()">+</button>
       </td>
     </tr>

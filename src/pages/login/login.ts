@@ -28,7 +28,7 @@ export class LoginPage {
     firebase.auth().onAuthStateChanged( user => {       
       this.usuario = user; // demora 500ms para processar
       console.log("usuario: ",user);            
-    })
+    });
 
     setTimeout(() => {
       if (this.usuario != null) {
@@ -39,7 +39,8 @@ export class LoginPage {
         this.autenticado = false;        
         load.dismiss();        
       }      
-    },2000);    
+    },2000);
+        
   }
 
   loginEmailPassword(){
