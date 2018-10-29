@@ -20,7 +20,8 @@ login.ts é o controller
 # Banco de Dados
 O banco de dados firestore(noSQL) organiza seus dados por coleção,documento e dados sendo que
 a coleção e onde será armazenado todos dados necessários de um documento e este documento 
-possui dados. 
+possui dados.
+
 Ex: listas(coleção) > uid(documento) > nome da lista, usuários e etc(dados)
 ![Arquitetura da Solução](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/firebaseschea.jpg)
 
