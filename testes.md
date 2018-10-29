@@ -1,4 +1,4 @@
 # Testes e Validação
 
-Como foi validado o sistema
+O aplicativo sera disponibilizado na Google Play, sua validação sera através dos feedbacks dos usuários.
 
