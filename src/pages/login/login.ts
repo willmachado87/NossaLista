@@ -1,4 +1,3 @@
-import { HomePage } from './../home/home';
 import { CadastroLoginPage } from './../cadastro-login/cadastro-login';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
