@@ -8,30 +8,17 @@
 <ion-content padding *ngIf="usuario != null"> 
   <ion-list class="list">    
     <ion-item  *ngFor="let i of lista | async">      
-      <p style="font-size: 17px; margin-top: 3%; width: 72%;" (click)="goList(i.id)">{{i.nome_lista}} </p>       
-      <ion-icon class="icoLixo" name="trash" (click)="del(i.id)" style="margin-left: 6%;"> </ion-icon>
+      <p style="font-size: 17px; margin-top: 3%; width: 72%;" (click)="goList(i.id)">{{i.nome_lista}} </p>      
+      <ion-icon class="icoLixo" name="trash" (click)="openModal(i)" style="margin-left: 6%;"></ion-icon>
       <ion-icon class="fa fa-pencil-square-o icoEdit" (click)="btEditList(i.id)" ></ion-icon>            
     </ion-item>
   </ion-list>
 
-  <ion-item>
-    <ion-label>Tem Certeza</ion-label>
-    <ion-select okText="Okay" cancelText="Dismiss"></ion-select>   
-    
-  </ion-item>
-
   <ion-fab bottom right>
-    <button ion-fab collor="primary" (click)="goAddLista()">
-      <ion-icon name="add"></ion-icon>
-    </button>
+      <button ion-fab collor="primary" (click)="goAddLista()">
+        <ion-icon name="add"></ion-icon>
+      </button>
   </ion-fab>
-
-     
-   
-      
- 
- 
- 
  
 </ion-content>
 

@@ -8,23 +8,23 @@
 <ion-content padding *ngIf="editar == false">
   <table *ngFor="let i of itensAdd; let ind = index">    
     <tr>
-      <td> Nome: </td>
+      <td> <p class="fontItem"> Nome: </p> </td>
       <td> <input type="text" class="textoItem" [(ngModel)]="i.nome_item" placeholder="*Campo Obrigatorio" > </td>
       <td> <ion-icon class="icoLixo" name="trash" (click)="delItenArray(ind)" style="margin-left: 6%;"> </ion-icon> </td>
     </tr>
 
     <tr>
-      <td> Quantidade: </td>
-      <td>
+      <td> <p class="fontItem"> Quantidade: </p> </td>
+      <td style="text-align: center">
         <button ion-button class="botaoLista" (click)="decrementQtd(ind)"> - </button> 
         <input type="number" class="textoItem2" [(ngModel)]="i.qtd" (blur)="validCamp(ind)"> 
         <button ion-button class="botaoLista" (click)="incrementQtd(ind)"> + </button>
-      </td>
+      </td> 
     </tr>
 
     <tr>
-      <td style="float: right;"> Observação: </td>
-      <td> <textarea [(ngModel)]="i.obs" rows="5" cols="30" class="texto4"> </textarea></td>
+      <td style="float: right;"> <p class="fontItem"> Observação: </p> </td>
+      <td> <textarea [(ngModel)]="i.obs" rows="5" cols="30" class="textoItem3"> </textarea></td>
     </tr>    
   </table>
   <button ion-button color="secondary" (click)="addOtherItem()" 
@@ -40,13 +40,13 @@
 <ion-content padding *ngIf="editar == true">
   <table>    
     <tr>
-      <td>Nome:</td>
+      <td> <p class="fontItem"> Nome: </p> </td>
       <td><input class="textoItem" [(ngModel)]="item.nome_item"> </td>
     </tr>
 
     <tr>
-      <td>Quantidade:</td>
-      <td>
+      <td> <p class="fontItem"> Quantidade: </p> </td>
+      <td style="text-align: center">
         <button ion-button class="botaoLista" (click)="decrementQtd()">-</button> 
         <input class="textoItem2" [(ngModel)]="item.qtd" (blur)="validCamp(ind)"> 
         <button ion-button class="botaoLista" (click)="incrementQtd()">+</button>
@@ -54,8 +54,8 @@
     </tr>
 
     <tr>
-      <td style="float: right;">Observação:</td>
-      <td><textarea [(ngModel)]="item.obs" rows="10" cols="30" style="margin:2% 0%"></textarea></td>
+      <td style="float: right;"> <p class="fontItem"> Observação: </p> </td>
+      <td><textarea [(ngModel)]="item.obs" rows="5" cols="30" class="textoItem3"></textarea></td>
     </tr>   
   </table>
   

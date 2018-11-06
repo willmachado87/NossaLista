@@ -11,6 +11,7 @@ import { AddItemPage } from './../pages/add-item/add-item';
 import { ListaPage } from '../pages/lista/lista';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { AddListaPage } from '../pages/add-lista/add-lista';
+import { Util } from '../pages/util';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,7 +19,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule} from 'angularfire2/auth';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Util } from '../pages/util';
+
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { Util } from '../pages/util';
     AddListaPage,
     LoginPage,
     CadastroLoginPage
+    
   ],
   imports: [
     BrowserModule,
@@ -59,6 +61,7 @@ import { Util } from '../pages/util';
     AddListaPage,
     LoginPage,
     CadastroLoginPage
+    
   ],
   providers: [
     StatusBar,

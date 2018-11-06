@@ -27,3 +27,21 @@
 ion-label.label.label-md {
     margin: 2% 0% 2% 0%;
 }
+
+.my-modal {
+    .modal-wrapper {
+    position: absolute;
+    top: 30% !important;
+    left: 5% !important;
+    right: 5% !important;
+    display: block;
+    width: 90% !important;
+    height: 30% !important;
+    border-radius: 2px;
+    box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);        
+    }
+    ion-backdrop {
+        visibility: visible;
+    } 
+}
+    
