@@ -1,72 +1,62 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { LoadingController } from 'ionic-angular';
+import { Item } from '../model';
+import { Util } from '../util';
 
 
 @IonicPage()
 @Component({
   selector: 'page-add-item',
-  templateUrl: 'add-item.html',
+  templateUrl: 'add-item.html', 
 })
+
 export class AddItemPage {
-
-  item;
-  nome_item:string;
-  nome_antigo:string;
-  qtd: number = 0;
-  obs:string;
-  comprado:boolean;
+  item:Item;  
+  nome_antigo:string; 
   idLista:string;
-  editar:boolean;
-  itensAdd:[any];
+  editar:boolean;   
+  itensAdd = new Array;
 
-  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, private bd: AngularFirestore) {
-    this.editar = navParams.get("editar");
-    this.itensAdd = [{nome_item:this.nome_item, qtd:this.qtd, obs:this.obs, comprado:false}];
-    console.log(this.editar);    
+  constructor(public navCtrl:NavController, public navParams:NavParams, private bd:AngularFirestore, public util:Util) {    
+              
+    this.editar = navParams.get("editar");   
+    this.itensAdd.push(new Item("", 0 ,"", false));   
        
     if(this.editar == true){
-      this.idLista = navParams.get("id");
-      this.item = navParams.get("i");
-      this.nome_item = this.item.nome_item;
-      this.nome_antigo = this.item.nome_item;
-      this.qtd = this.item.qtd;
-      this.obs = this.item.obs;
-      this.comprado = this.item.comprado;           
+      this.idLista = navParams.get("id");      
+      this.item = navParams.get("i");     
+      this.nome_antigo = this.item.nome_item;                 
     }else{
       this.idLista = navParams.get("id");
     }      
-  }
+  }  
   
   // adiciona item no BD
-  addItem(){    
+  addItemBd(){    
     let refdoc = this.bd.collection('listas');
     refdoc.doc(this.idLista).ref.get().then( c => {
       if (c.exists) {        
-        let l2 = c.data().itens;
+        let l2 = c.data().itens;        
+        for (let i in this.itensAdd) { this.itensAdd[i] = Object.assign( {}, this.itensAdd[i]); }
 
         if(this.editar == false){
-          var newArray = l2.concat(this.itensAdd);
-          refdoc.doc(this.idLista).update({ itens: newArray }); 
-             
+          var newArray = l2.concat(this.itensAdd);                  
+          refdoc.doc(this.idLista).update({ itens: newArray });            
         }else{
-          let itemEditado = {nome_item:this.nome_item, qtd:this.qtd, obs:this.obs, comprado:false};
+          let itemEditado = new Item(this.item.nome_item, this.item.qtd, this.item.obs, false);          
           const indice = l2.findIndex(obj => obj.nome_item == this.nome_antigo);
-          l2.splice(indice, 1, itemEditado);
-          console.log("editado",l2);
+          l2.splice(indice, 1, Object.assign({}, itemEditado) );          
           refdoc.doc(this.idLista).update({ itens: l2 });
-        } 
-        
-      } else {
-       console.log("Documento n encontrado!");
+        }         
+      }else {
+        this.util.showToast("Documento não encontrado","bottom",2000);
       }
-    })
-    this.navCtrl.pop();
-    //this.load();      
+    });       
+    this.util.loading(1000); setTimeout(()=>{this.navCtrl.pop()},1000);           
   }
 
-  //remove  item da lista
+  //remove  item da lista no BD
   removeItem(i){    
     let refdoc = this.bd.collection('listas');
     refdoc.doc(this.idLista).ref.get().then(c => {
@@ -75,50 +65,57 @@ export class AddItemPage {
         const indice = l2.findIndex(obj => obj.nome_item == this.item.nome_item);    
         l2.splice(indice, 1);          
         refdoc.doc(this.idLista).update({ itens: l2 });
-      } else {
-       console.log("Documento n encontrado!");
+      } else {       
+       this.util.showToast("Documento não encontrado","bottom",2000);
       }
     })
-    this.navCtrl.pop();    
-    //this.load();   
+    this.navCtrl.pop();      
   }
 
-  adicionarOutroItem(){    
-    let novoItem = {nome_item:this.nome_item, qtd:this.qtd, obs:this.obs, comprado:false};    
-    this.itensAdd.push(novoItem);   
+  //remove item da lista local
+  delItenArray(ind:number){
+    if(this.itensAdd.length == 1){      
+      this.util.showToast("Todos campos ja foram deletados","bottom",2000);            
+    }else{
+      this.itensAdd.splice(ind,1);
+    }    
+  }
+
+  //adicionar outro item local
+  addOtherItem(){  
+    let novoItem = new Item("",0,"",false);       
+    this.itensAdd.push(novoItem);      
   }
 
   //diminiu 1 do item
-  diminuirQtd(index:number) {
-    if(this.editar == true){
-      this.qtd--
-    }else{
-      this.itensAdd[index].qtd--;
+  decrementQtd(index:number) {
+    if(this.editar == true && this.item.qtd > 0){ 
+      this.item.qtd--;
+    }else if(this.editar == true && this.item.qtd <= 0){      
+      this.util.showToast("Não são aceitos Numeros Negativos","bottom",2000);          
     }    
-         
+    if(this.editar == false && this.itensAdd[index].qtd > 0) {
+      this.itensAdd[index].qtd--;
+    }else if(this.editar == false && this.itensAdd[index].qtd <= 0) {
+      this.util.showToast("Não são aceitos Numeros Negativos","bottom",2000);      
+    }
+       
   }
 
   //aumenta 1 do item
-  aumentarQtd(index:number) {
-    if(this.editar == true){
-      this.qtd++
-    }else{
-      this.itensAdd[index].qtd++;
-    }     
+  incrementQtd(index:number) {
+    let ifElse = ( this.editar == true ? this.item.qtd++ : this.itensAdd[index].qtd++ );    
   }
 
-  load() {
-    let loading = this.loadingCtrl.create({
-      spinner: 'ios',
-      content: 'Carregando...'
-    });  
-    loading.present();  
-    setTimeout(() => {
-      this.navCtrl.pop();
-    }, 1500);
-  
-    setTimeout(() => {
-      loading.dismiss();
-    }, 1500);
+  validCamp(index){
+    if(this.editar == true && this.item.qtd <= 0){
+      this.item.qtd = 0;      
+      this.util.showToast("Não são aceitos Numeros Negativos","bottom",2000);          
+    }    
+    if(this.editar == false && this.itensAdd[index].qtd <= 0) {
+      this.itensAdd[index].qtd = 0;
+      this.util.showToast("Não são aceitos Numeros Negativos","bottom",2000);      
+    }
   }
+  
 }

@@ -1,4 +1,3 @@
-import { HomePage } from './../home/home';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';

@@ -17,8 +17,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule} from 'angularfire2/auth';
-
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { Util } from '../pages/util';
 
 
 @NgModule({
@@ -45,8 +45,8 @@ import { AngularFireAuthModule} from 'angularfire2/auth';
       messagingSenderId: "87417686496"
     }),
     AngularFirestoreModule.enablePersistence(),
-    AngularFireAuthModule
-    
+    AngularFireAuthModule,
+    ReactiveFormsModule    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -63,7 +63,9 @@ import { AngularFireAuthModule} from 'angularfire2/auth';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Util
+    
   ]
 })
 export class AppModule {}

@@ -24,7 +24,7 @@ export class HomePage {
     
     this.usuario = firebase.auth().currentUser;
     this.listaColeçao = bd.collection('listas', ref => {      
-      return ref.where('usuarios','array-contains',this.usuario.uid)
+      return ref.where('usuarios','array-contains',this.usuario.uid).orderBy('nome_lista','asc');
     });    
     console.log("usuario logado: ",this.usuario);    
     this.getallList();    
@@ -37,6 +37,10 @@ export class HomePage {
   goAddLista(){
     this.navCtrl.push(AddListaPage,{editList : false} ); 
   }
+
+  btEditList(id:string){
+    this.navCtrl.push(AddListaPage,{idLista:id, editList:true});
+  } 
 
   getallList() {
     this.lista = this.listaColeçao.snapshotChanges().pipe(
@@ -51,20 +55,7 @@ export class HomePage {
 
   del(i){
     this.bd.collection('listas').doc(i).delete();
-    console.log("del");
-    
+    console.log("del");    
   }
-/*
-  ionViewWillEnter() {
-    console.log('WILL ENTER home');
-    if(this.navParams.get("idListaDel") != undefined || this.navParams.get("idListaDel") != null ){
-      console.log("é para DELETAR",this.navParams.get("idListaDel"));
-      
-      this.bd.collection('listas').doc(this.navParams.get("idListaDel")).delete();
-    }else{
-      console.log("nao e delete",this.navParams.get("idListaDel"));
-      
-    }   
-  }
-  */
+
 }

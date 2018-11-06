@@ -5,35 +5,42 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>  
-  <table class="tabela">
-    <tr>
-      <th>Item</th>
-      <th style="padding-left: 25%">Quantidade</th>
-      <th style="padding-left: 9%">Comprado</th>
-    </tr>
-  </table>
-
-  <table >
-    
-    <tr *ngFor="let i of lista2.itens">      
-      <td class="coluna1"><label (click)="editarItem(i)">{{i.nome_item}}</label></td>
-          <td class="coluna2"><Label (click)="editarItem(i)">{{i.qtd}}</Label></td> 
-          <td class="coluna3">
-          <ion-checkbox color="secondary" checked="{{i.comprado}}" (click)="comprou(i)"></ion-checkbox>
-        </td> 
-    </tr>
-  </table>
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4 style="text-align:left; font-size: 18px; font-weight: bold">
+        <p>Item</p>
+      </ion-col>
+      <ion-col col-4 style="text-align:center; font-size: 18px; font-weight: bold">
+        <p>Quantidade</p>
+      </ion-col>
+      <ion-col col-4 style="text-align:right; font-size: 18px; font-weight: bold">
+        <p> Comprado </p>
+      </ion-col>       
+    </ion-row>
+  </ion-grid>
+  
+  <ion-grid>
+    <ion-row *ngFor="let i of lista2.itens">
+      <ion-col col-5 style="text-align:left; font-size: 18px;">
+        <label (click)="editarItem(i)"> {{i.nome_item}} </label>
+      </ion-col>
+      
+      <ion-col col-3 style="text-align:center; font-size: 18px;">
+          <label (click)="editarItem(i)"> {{i.qtd}} </label>
+      </ion-col>
+      
+      <ion-col col-4 style="text-align:center; font-size: 18px;">
+          <ion-checkbox color="secondary" checked="{{i.comprado}}" (click)="comprou(i)"
+          style="margin-left: 25%;"></ion-checkbox>
+      </ion-col>        
+    </ion-row>
+  </ion-grid> 
   
   <ion-fab bottom right>
     <button ion-fab collor="primary" (click)="btAddItem()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
-
- 
-
-
-
 
 </ion-content>
