@@ -5,7 +5,7 @@ no medium https://medium.com/@wyllmachado/documentando-um-projeto-final-de-ads-6
 
 Esse documento tem como objetivo fornecendo informações e artefatos sobre a concepção do produto, o seu planejamento, as decisões arquiteturais, desenvolvimento, testes/validação e conclusões.
 
-# Como Executra o projeto
+# Como Executar o projeto
 Os comandos devem ser executados no node.js command prompt.
 Dentro do diretorio do projeto execute os seguintes comandos.
 1. Clone o diretorio do git
