@@ -1,20 +1,20 @@
 <ion-header>
   <ion-navbar>
-    <ion-title style="text-align:center; margin-right: 10%;" *ngIf="editar == true">Editar Item</ion-title>
-    <ion-title style="text-align:center; margin-right: 10%;" *ngIf="editar == false">Novo Item</ion-title>
+    <ion-title class="fontStandard" style="text-align:center; margin-right: 9%;" *ngIf="editar == true">Editar Item</ion-title>
+    <ion-title class="fontStandard" style="text-align:center; margin-right: 9%;" *ngIf="editar == false">Novo Item</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding *ngIf="editar == false">
   <table *ngFor="let i of itensAdd; let ind = index">    
     <tr>
-      <td> <p class="fontItem"> Nome: </p> </td>
-      <td> <input type="text" class="textoItem" [(ngModel)]="i.nome_item" placeholder="*Campo Obrigatorio" > </td>
-      <td> <ion-icon class="icoLixo" name="trash" (click)="delItenArray(ind)" style="margin-left: 6%;"> </ion-icon> </td>
+      <td><p class="fontStandard"> Nome: </p></td>
+      <td><input type="text" class="textoItem" [(ngModel)]="i.nome_item" placeholder="*Campo Obrigatorio" ></td>
+      <td><ion-icon class="icoLixo2" name="trash" (click)="delItenArray(ind)"></ion-icon></td>
     </tr>
 
     <tr>
-      <td> <p class="fontItem"> Quantidade: </p> </td>
+      <td><p class="fontStandard"> Quantidade: </p></td>
       <td style="text-align: center">
         <button ion-button class="botaoLista" (click)="decrementQtd(ind)"> - </button> 
         <input type="number" class="textoItem2" [(ngModel)]="i.qtd" (blur)="validCamp(ind)"> 
@@ -23,14 +23,14 @@
     </tr>
 
     <tr>
-      <td style="float: right;"> <p class="fontItem"> Observação: </p> </td>
-      <td> <textarea [(ngModel)]="i.obs" rows="5" cols="30" class="textoItem3"> </textarea></td>
+      <td style="float: right;"><p class="fontStandard"> Observação: </p></td>
+      <td><textarea [(ngModel)]="i.obs" rows="5" cols="30" class="textoItem3"></textarea></td>
     </tr>    
   </table>
-  <button ion-button color="secondary" (click)="addOtherItem()" 
-          [disabled]="itensAdd[itensAdd.length-1].nome_item == null || itensAdd[itensAdd.length-1].nome_item == '' "> + Itens
+  <button ion-button color="secondary" (click)="addOtherItem()" [disabled]="itensAdd[itensAdd.length-1].nome_item == null || itensAdd[itensAdd.length-1].nome_item == '' ">
+      Adicionar outro Item
   </button>
-  <br /><br /><br />
+  <br/><br/><br/>
   <button ion-button full style="margin-bottom: 3%;" (click)="addItemBd()"
           [disabled]="itensAdd[itensAdd.length-1].nome_item == null || itensAdd[itensAdd.length-1].nome_item == ''">
      Salvar 
@@ -40,12 +40,12 @@
 <ion-content padding *ngIf="editar == true">
   <table>    
     <tr>
-      <td> <p class="fontItem"> Nome: </p> </td>
-      <td><input class="textoItem" [(ngModel)]="item.nome_item"> </td>
+      <td><p class="fontStandard"> Nome: </p></td>
+      <td><input class="textoItem" [(ngModel)]="item.nome_item"></td>
     </tr>
 
     <tr>
-      <td> <p class="fontItem"> Quantidade: </p> </td>
+      <td> <p class="fontStandard"> Quantidade: </p> </td>
       <td style="text-align: center">
         <button ion-button class="botaoLista" (click)="decrementQtd()">-</button> 
         <input class="textoItem2" [(ngModel)]="item.qtd" (blur)="validCamp(ind)"> 
@@ -54,7 +54,7 @@
     </tr>
 
     <tr>
-      <td style="float: right;"> <p class="fontItem"> Observação: </p> </td>
+      <td style="float: right;"> <p class="fontStandard"> Observação: </p> </td>
       <td><textarea [(ngModel)]="item.obs" rows="5" cols="30" class="textoItem3"></textarea></td>
     </tr>   
   </table>

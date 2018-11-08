@@ -1,76 +1,98 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Adicionar Lista</ion-title>
+    <ion-title class="fontStandard" style="text-align:center; margin-right: 16%;" *ngIf="editList == true">Editar Lista</ion-title>
+    <ion-title class="fontStandard" style="text-align:center; margin-right: 14%;" *ngIf="editList == false">Adicionar Lista</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding *ngIf="editList == false">
-
-  <ion-grid>
-    <ion-row>
-      <ion-col col-4> <p>Nome Lista:</p> </ion-col>
-      <ion-col col-8> <input class="input" [(ngModel)]="nome_lista"> </ion-col>
-    </ion-row>
-
-    <ion-row>
-        <ion-col col-12> <p>Lista Compartilhada  com:</p> </ion-col>        
-    </ion-row>    
-    
-    <ion-row *ngFor="let i of listaUsuarios; let ind = index">
-      <ion-col col-2> <p>E-mail</p> </ion-col>
-      <ion-col col-6> <input [(ngModel)]="i.email" (blur)="addOutroUsuario(i,ind)"> </ion-col>           
-      <ion-col col-2> <ion-icon class="icoLixo" name="trash" (click)="removeUserList(i,ind)"></ion-icon> </ion-col>      
-    </ion-row>    
-
-  </ion-grid>
-
-  <ion-icon class="icon1" name="add-circle" (click)="addNewUser()"></ion-icon>
-  <button ion-button full style="margin-bottom: 3%;" (click)="addLista()">Salvar Lista</button>  
-  
-  <!--
-  <ion-grid>
-    <ion-row>
-      <ion-col col-4> <p>Nome Lista:</p> </ion-col>
-      <ion-col col-8> <input class="input" [(ngModel)]="nome_lista"> </ion-col>
-    </ion-row>
-
-    <ion-row>
-        <ion-col col-12> <p>Compartilhada Lista com:</p> </ion-col>        
-    </ion-row>
-    
-    <ion-row *ngFor="let i of listaUsuarios; let ind = index">
-      <ion-col col-2> <p>E-mail</p> </ion-col>
-      <ion-col col-6> <input [(ngModel)]="i.email"></ion-col>
-      <ion-col col-2> <button ion-button color="secondary" (click)="addOutroUsuario(i,ind)">+</button> </ion-col>
-      <ion-col col-2> <button ion-button color="danger" (click)="deletarUsuario(ind)">-</button> </ion-col>
-    </ion-row>    
-
-  </ion-grid>
-  <button ion-button full style="margin-bottom: 3%;" (click)="addLista()">Salvar Lista</button>
-  -->
-</ion-content>
-
 <ion-content padding *ngIf="editList == true">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4><p class="fontStandard">Nome Lista:</p></ion-col>        
+        <ion-col col-8><input class="textoItem" style="margin-top: 4%;" type="text" [(ngModel)]="nameList"></ion-col>
+      </ion-row> <br/>
+
+      <ion-row>
+        <ion-col col-8 style="text-align: center;" class="fontStandard"> <input class="textoItem" type="email" [(ngModel)]="email"
+              (keyup.enter)="btAddUserEdit()" placeholder="Digite e-mail da pessoa"> 
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button color="primary" (click)="btAddUserEdit()" style="margin-top: -8%; width: 96%;"> 
+            Adicionar
+          </button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-12 style="text-align: center; margin-bottom: -7%;"><p class="fontStandard">Lista compartilhada com:</p></ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-card *ngFor="let i of userList; let ind = index" >
+      <ion-card-content>
+        <ion-row><ion-col>Nome: {{i.nomeDisplay}}</ion-col></ion-row>
+        <ion-row>
+          <ion-col col-8>E-mail: {{i.email}}</ion-col>
+          <ion-col col-4><ion-icon class="icoLixoCard" name="trash" (click)="removeUserList(i,ind)">
+            <p style="color:red;">Excluir</p>
+          </ion-icon></ion-col>
+        </ion-row> 
+      </ion-card-content>
+    </ion-card>
+    <p style="padding-top: 6%; visibility: hidden">&nbsp</p>   
+
+    <ion-fab bottom center style="width: 35%; margin-left: -20%;;">
+      <button ion-fab class="fontBt" style="border-radius: 20px; width: 123%;" (click)="addListBd()">
+        Salvar Edições                
+      </button>     
+    </ion-fab>   
+</ion-content>
+
+
+<ion-content padding *ngIf="editList == false">
   <ion-grid>
     <ion-row>
-      <ion-col col-4> <p>Nome Lista:</p> </ion-col>
-      <!--<ion-col col-8> <p>{{lista2.nome_lista}}</p> </ion-col>-->
+      <ion-col col-4><p class="fontStandard">Nome Lista:</p></ion-col>
+      <ion-col col-8> <input class="textoItem" style="margin-top:4%;" placeholder="*Campo Obrigatorio" [(ngModel)]="nameList"> </ion-col>
     </ion-row>
 
     <ion-row>
-        <ion-col col-12> <p>Lista Compartilhada  com:</p> </ion-col>        
-    </ion-row>    
-    
-    <ion-row *ngFor="let i of usuariosFull; let ind = index">
-      <ion-col col-2> <p>E-mail</p> </ion-col>
-      <ion-col col-6> <input [(ngModel)]="i.email" (blur)="validUser($event.target.value,ind)"> </ion-col>     
-      <ion-col col-2> <ion-icon class="icoLixo" name="trash" (click)="removeUserList(i,ind)"></ion-icon> </ion-col>      
-    </ion-row>    
-  
+      <ion-col col-12 style="margin-bottom: -7%"><p class="fontStandard">Compartilhar esta lista com:</p></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-8 style="text-align: center;"> <input class="textoItem" type="email" [(ngModel)]="email"
+          (keyup.enter)="btAddUser()" placeholder="Digite e-mail da pessoa"> </ion-col>
+      <ion-col col-4>
+        <button ion-button color="primary" (click)="btAddUser()" [disabled]="nameList == null || nameList == undefined || nameList == '' "
+          style="margin-top: -8%; width: 96%;">
+          Adicionar
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col col-12 style="text-align: center; margin-bottom: -9%;"><p class="fontStandard">Lista compartilhada com:</p></ion-col>
+      </ion-row>
   </ion-grid>
 
-  <ion-icon class="icon1" name="add-circle" (click)="addNewUser()"></ion-icon>
-  <button ion-button full style="margin-bottom: 3%;" (click)="saveEdit()">Salvar Edições</button>   
-  <!--<button ion-button full color="danger" (click)="deleteList()">Deletar Lista</button>-->
-
+  <ion-card *ngFor="let i of listTemp; let ind = index">
+    <ion-card-content>
+      <ion-row><ion-col >Nome: {{i.nomeDisplay}}</ion-col></ion-row>
+      <ion-row>
+        <ion-col col-8>E-mail: {{i.email}}</ion-col>
+        <ion-col col-4><ion-icon class="icoLixoCard" name="trash" (click)="removeUserList(ind)">
+            <p style="color:red;">Excluir</p>
+        </ion-icon></ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <p style="padding-top: 6%; visibility: hidden">&nbsp</p>
+  <ion-fab bottom center style="width: 35%; margin-left: -20%;;">
+    <button ion-fab class="fontBt" style="border-radius: 20px; width: 123%;" (click)="addListBd()" [disabled]="nameList == null || nameList == undefined || nameList == '' ">
+      Salvar Lista
+    </button>     
+  </ion-fab>    
 </ion-content>
+
+
