@@ -1,11 +1,11 @@
 import { AddListaPage } from './../add-lista/add-lista';
-import { PerfilPage } from './../perfil/perfil';
 import { Observable } from 'rxjs-compat/Observable';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AddItemPage } from '../add-item/add-item';
 import { LoadingController } from 'ionic-angular';
+import { LogPage } from '../log/log';
 
 @IonicPage()
 @Component({
@@ -22,10 +22,19 @@ export class ListaPage {
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, private bd: AngularFirestore) {  
     this.idLista = navParams.get("id");       
     this.getall();    
-  } 
+  }
+  
+  ionViewWillEnter() {
+    console.log('WILL ENTER ListaPage');
+    this.getall();    
+  }
 
   btEditList(){
     this.navCtrl.push(AddListaPage,{idLista:this.idLista, editList:true});
+  }
+
+  btLog(){
+    this.navCtrl.push(LogPage,{id: this.idLista});
   }
   
   private getall() {    
@@ -34,8 +43,7 @@ export class ListaPage {
 
     this.lista.subscribe(u =>{
       this.lista2 = u;                      
-    });   
-
+    });
   }
 
   btAddItem() {
@@ -60,31 +68,7 @@ export class ListaPage {
       } else {
         console.log("Documento nao encontrado!")
       }
-    })
-
-  }   
-
-  load() {
-    let loading = this.loadingCtrl.create({
-      spinner: 'hide',
-      content: 'Loading Please Wait...'
     });
-  
-    loading.present();
-  
-    setTimeout(() => {
-      this.navCtrl.push(PerfilPage);
-    }, 1000);
-  
-    setTimeout(() => {
-      loading.dismiss();
-    }, 5000);
-  }
-
-  ionViewWillEnter() {
-    console.log('WILL ENTER ListaPage');
-    this.getall();    
-  }   
-
+  } 
 
 }

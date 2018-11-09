@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>log</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list *ngFor="let i of logAlterados">
+    <p>{{i.titulo}}</p>
+    <p *ngFor="let w of i.alteracoes">{{w}}</p>    
+  </ion-list>
+
+</ion-content>

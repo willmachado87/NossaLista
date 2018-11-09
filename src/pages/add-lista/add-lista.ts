@@ -47,16 +47,19 @@ export class AddListaPage {
     }
   }
 
-  btAddUser(){    
+  btAddUser(){
+    if(this.email == undefined){
+      this.util.showToast("Campo E-mail esta Vazio", "bottom", 3000);
+      return      
+    }     
     let ref = this.bd.collection("usuarios", queryFS => {
       return queryFS.where('email', '==', this.email)
     });
     let find: Observable<any> = ref.valueChanges();     
     find.subscribe(doc => {
-      if(doc.length > 0) {
+      if(doc.length > 0 ) {
         this.listTemp.push({ nomeDisplay: doc[0].nomeDisplay, email: doc[0].email, id: doc[0].id });        
-        this.util.showToast("Usuario " + doc[0].nomeDisplay + " Encontrado com sucesso", "bottom", 3000);
-        console.log(this.listTemp);
+        this.util.showToast("Usuario " + doc[0].nomeDisplay + " Encontrado com sucesso", "bottom", 3000);        
         this.email = null;       
       }else{       
         this.util.showToast("Usuario não Cadastrado", "bottom", 3000);        
@@ -65,6 +68,10 @@ export class AddListaPage {
   }
   
   btAddUserEdit(){
+    if(this.email == undefined){
+      this.util.showToast("Campo E-mail esta Vazio", "bottom", 3000);
+      return      
+    }   
     let ref = this.bd.collection("usuarios", queryFS => {
       return queryFS.where('email', '==', this.email)
     });
@@ -78,8 +85,8 @@ export class AddListaPage {
         this.util.showToast("Usuario não Cadastrado", "bottom", 3000);        
       }
     });
-  } 
-  
+  }
+    
   addListBd(){
     if(this.editList == true){
       let listaComIds = new Array();
@@ -94,8 +101,10 @@ export class AddListaPage {
       this.listTemp.push(userConnected);      
       let listaComIds = new Array();
       this.listTemp.forEach(data => { listaComIds.push(data.id); });
-      let list = new Lista(this.nameList, listaComIds);    
-      this.bd.collection('listas').doc(this.bd.createId()).set(Object.assign({}, list));
+      let list = new Lista(this.nameList, listaComIds);
+      const idList = this.bd.createId();    
+      this.bd.collection('listas').doc(idList).set(Object.assign({}, list));
+      this.util.addLogList(idList, null, null, null);
       this.util.showToast("Lista Criada com Sucesso", "bottom", 3000);
       this.navCtrl.pop();  
     }

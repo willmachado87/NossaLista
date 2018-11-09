@@ -26,14 +26,31 @@ export class User {
 }
 
 export class Lista {
-    nome_lista: String;
+    nome_lista: string;
     itens;
     usuarios;
+    log;
   
     constructor(nome_lista: string, usuarios: string[]) {
       this.nome_lista = nome_lista;
-      this.itens = [];
       this.usuarios = usuarios;
-    }
-  }
+      this.itens = [];
+      this.log = [];
+      
+    }   
+}
+
+export class Log {
+    nome_usuario: string;
+    acao: string;
+    item_old: any;
+    item_new: any;
+  
+    constructor(nome_usuario: string, acao: string, item_old:any, item_new: any) {
+      this.nome_usuario = nome_usuario;
+      this.acao = acao;
+      this.item_old = item_old;
+      this.item_new = item_new;      
+    }   
+}
 

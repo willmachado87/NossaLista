@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title class="fontStandard" style="text-align:center; margin-right: 16%;" *ngIf="editList == true">Editar Lista</ion-title>
-    <ion-title class="fontStandard" style="text-align:center; margin-right: 14%;" *ngIf="editList == false">Adicionar Lista</ion-title>
+    <ion-title class="fontStandard" style="text-align:center; margin-right: 14%;" *ngIf="editList == false">Adicionar Lista</ion-title>    
   </ion-navbar>
 </ion-header>
 
@@ -14,7 +14,7 @@
 
       <ion-row>
         <ion-col col-8 style="text-align: center;" class="fontStandard"> <input class="textoItem" type="email" [(ngModel)]="email"
-              (keyup.enter)="btAddUserEdit()" placeholder="Digite e-mail da pessoa"> 
+              (keyup.enter)="btAddUserEdit()" placeholder="Digite e-mail da pessoa" > 
         </ion-col>
         <ion-col col-4>
           <button ion-button color="primary" (click)="btAddUserEdit()" style="margin-top: -8%; width: 96%;"> 

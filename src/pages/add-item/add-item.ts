@@ -4,7 +4,6 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { Item } from '../model';
 import { Util } from '../util';
 
-
 @IonicPage()
 @Component({
   selector: 'page-add-item',
@@ -38,16 +37,18 @@ export class AddItemPage {
     refdoc.doc(this.idLista).ref.get().then( c => {
       if (c.exists) {        
         let l2 = c.data().itens;        
-        for (let i in this.itensAdd) { this.itensAdd[i] = Object.assign( {}, this.itensAdd[i]); }
+        for (let i in this.itensAdd) { this.itensAdd[i] = Object.assign( {}, this.itensAdd[i]); } //convert object
 
         if(this.editar == false){
           var newArray = l2.concat(this.itensAdd);                  
-          refdoc.doc(this.idLista).update({ itens: newArray });            
+          refdoc.doc(this.idLista).update({ itens: newArray });
+          this.util.addLogList( this.idLista, "Criou", this.itensAdd, null);            
         }else{
           let itemEditado = new Item(this.item.nome_item, this.item.qtd, this.item.obs, false);          
           const indice = l2.findIndex(obj => obj.nome_item == this.nome_antigo);
           l2.splice(indice, 1, Object.assign({}, itemEditado) );          
           refdoc.doc(this.idLista).update({ itens: l2 });
+          //this.util.addLogList();
         }         
       }else {
         this.util.showToast("Documento não encontrado","bottom",2000);
