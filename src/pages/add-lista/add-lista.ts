@@ -96,15 +96,16 @@ export class AddListaPage {
       this.bd.collection('listas').doc(this.idList).update({nome_lista:this.nameList, usuarios:listaComIds});
       this.util.showToast("Lista Editada com Sucesso", "bottom", 3000);
       this.navCtrl.pop();
-    }else{
-      let userConnected = new User(this.user.uid, this.user.displayName, this.user.email);
-      this.listTemp.push(userConnected);      
+    }else{      
+      this.listTemp.push(new User(this.user.uid, this.user.displayName, this.user.email));      
       let listaComIds = new Array();
-      this.listTemp.forEach(data => { listaComIds.push(data.id); });
+      this.listTemp.forEach(data => { 
+        listaComIds.push(data.id); 
+      });
       let list = new Lista(this.nameList, listaComIds);
       const idList = this.bd.createId();    
       this.bd.collection('listas').doc(idList).set(Object.assign({}, list));
-      this.util.addLogList(idList, null, null, null);
+      this.util.addLogList(idList, "Criou lista", null, null);
       this.util.showToast("Lista Criada com Sucesso", "bottom", 3000);
       this.navCtrl.pop();  
     }

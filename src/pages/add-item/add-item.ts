@@ -42,13 +42,14 @@ export class AddItemPage {
         if(this.editar == false){
           var newArray = l2.concat(this.itensAdd);                  
           refdoc.doc(this.idLista).update({ itens: newArray });
-          this.util.addLogList( this.idLista, "Criou", this.itensAdd, null);            
+          this.util.addLogList( this.idLista, "Adicionou item", this.itensAdd, null);             
         }else{
           let itemEditado = new Item(this.item.nome_item, this.item.qtd, this.item.obs, false);          
           const indice = l2.findIndex(obj => obj.nome_item == this.nome_antigo);
+          this.util.addLogList(this.idLista, "Alterou item", l2[indice] , Object.assign({}, itemEditado) );
           l2.splice(indice, 1, Object.assign({}, itemEditado) );          
           refdoc.doc(this.idLista).update({ itens: l2 });
-          //this.util.addLogList();
+          
         }         
       }else {
         this.util.showToast("Documento não encontrado","bottom",2000);

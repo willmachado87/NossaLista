@@ -6,9 +6,11 @@
 
 <ion-content padding>
 
-  <ion-list *ngFor="let i of logAlterados">
-    <p>{{i.titulo}}</p>
-    <p *ngFor="let w of i.alteracoes">{{w}}</p>    
+  <ion-list>
+    <div ion-item *ngFor="let i of listLog">
+      <p>{{i.title}}</p>
+      <p *ngFor="let w of i.changes">{{w}}</p>
+    </div>       
   </ion-list>
 
 </ion-content>
