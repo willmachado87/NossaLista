@@ -33,9 +33,14 @@
         <ion-row><ion-col>Nome: {{i.nomeDisplay}}</ion-col></ion-row>
         <ion-row>
           <ion-col col-8>E-mail: {{i.email}}</ion-col>
-          <ion-col col-4><ion-icon class="icoLixoCard" name="trash" (click)="removeUserList(i,ind)">
-            <p style="color:red;">Excluir</p>
+          <ion-col col-4 *ngIf="i.id != this.user.uid"><ion-icon class="icoLixoCard" name="trash" (click)="removeUserList(i,ind)">
+            <p style="color:red;">Excluir</p>           
           </ion-icon></ion-col>
+
+          <ion-col col-4 *ngIf="i.id == this.user.uid"><ion-icon name="ios-walk" class="icoExit" (click)="BtExitList()">
+            <p *ngIf="i.id == this.user.uid" style="color:red;">Sair da Lista</p>           
+          </ion-icon></ion-col>
+
         </ion-row> 
       </ion-card-content>
     </ion-card>

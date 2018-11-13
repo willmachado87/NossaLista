@@ -30,56 +30,49 @@ export class Util {
     }
 
     addLogList(idList: string, acao:string, item_old:any, item_new:any){
-
         let nameUserConected = firebase.auth().currentUser.displayName;
         let refDoc = this.bd.collection('listas').doc(idList);
-        
 
         let newLog = new Log(nameUserConected, acao, item_old, item_new);
-        console.log("novo log para add no bd :", newLog);
-        
-
-        
-        if(idList != null && acao == "Criou lista"){    
-            console.log("Criação da lista");            
-            let log = [Object.assign({}, newLog)];                                  
-            refDoc.update({ log: log });
-            return           
-        }
-
-        else if(idList != null && acao == "Adicionou item"){            
-            refDoc.ref.get().then( listFs => {                
-                let logTemp = listFs.data().log;
-                newLog.item_old.forEach(data => {
-                    logTemp.push({nome_usuario: nameUserConected, acao: "Adicionou item", item_old: data, item_new: null});    
-                });                           
-                refDoc.update({log: logTemp}); 
-            });
-            return
-        } 
-
-        else if(idList != null && acao == "Alterou item"){ 
-            console.log("Alterou item");
-            refDoc.ref.get().then( data => {
-                let logTemp = data.data().log;                
-                logTemp.push(Object.assign({}, newLog));
-                console.log(logTemp);                
-                refDoc.update({log: logTemp});
-            });
-        }
-        else if(idList != null && acao == "Deletou item"){ //FAZER ESTE AGORA!!!
-            console.log("Alterou Item");            
-
-        }
-        
-        
-
-        
-
+        switch(acao) { 
+            case "Criou lista": { 
+                let log = [ Object.assign({}, newLog) ];                                  
+                refDoc.update({ log: log }); 
+               break; 
+            } 
+            case "Adicionou item": { 
+                refDoc.ref.get().then( listFs => {                
+                    let logTemp = listFs.data().log;
+                    newLog.item_old.forEach(data => {
+                        let newLog = new Log(nameUserConected, "Adicionou item", data, null);                        
+                        logTemp.push( Object.assign({}, newLog) );                           
+                    });                           
+                    refDoc.update({log: logTemp});
+                });     
+               break; 
+            } 
+            case "Alterou item": {
+                refDoc.ref.get().then( data => {
+                    let logTemp = data.data().log;                
+                    logTemp.push( Object.assign({}, newLog) );                              
+                    refDoc.update({log: logTemp});
+                });
+                break;
+            }
+            case "Deletou item": {
+                refDoc.ref.get().then( data => {
+                    let logTemp = data.data().log;                
+                    logTemp.push( Object.assign({}, newLog) );                                               
+                    refDoc.update({log: logTemp});
+                });
+                break;
+            }
+            default: { 
+                console.log("Erro!");                    
+               break; 
+            } 
+        }          
     }
 
-
-
-
-
+    
 }

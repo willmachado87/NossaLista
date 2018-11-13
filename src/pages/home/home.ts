@@ -1,7 +1,7 @@
 import { AddListaPage } from './../add-lista/add-lista';
 import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { NavController, LoadingController, NavParams, ModalController, Modal, ModalOptions } from 'ionic-angular';
+import { NavController, NavParams, ModalController, Modal, ModalOptions } from 'ionic-angular';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs-compat/Observable';
 import { ListaPage } from '../lista/lista';
@@ -21,7 +21,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public bd: AngularFirestore, public afb:AngularFireAuth, 
-              public loadCtrl: LoadingController, public modalCtrl: ModalController, public util: Util) {    
+              public modalCtrl: ModalController, public util: Util) {    
     
     this.usuario = firebase.auth().currentUser;
     this.listaColeçao = bd.collection('listas', ref => {      
@@ -68,9 +68,15 @@ export class HomePage {
     )
   }
 
-  del(id:string){
-    this.bd.collection('listas').doc(id).delete();
-    this.util.showToast("Lista Deletada com Sucesso", "botton", 3000);        
+  del(idList:string){    
+    let refDoc = this.bd.collection("listas").doc(idList).ref.get().then( data => {    
+      if(data.data().admin_lista.id == this.usuario.uid){  
+        this.bd.collection('listas').doc(idList).delete();
+        this.util.showToast("Lista Deletada com Sucesso", "botton", 3000);
+      }else{
+        this.util.showToast("Somente o CRIADOR da lista pode deletá la. Se deseja sair da lista entre nas configurações da lista e aperte em 'sair da lista' ", "botton", 7000);
+      }
+    });            
   } 
 
 }

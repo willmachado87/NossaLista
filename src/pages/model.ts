@@ -27,12 +27,14 @@ export class User {
 
 export class Lista {
     nome_lista: string;
+    admin_lista: string
     itens;
     usuarios;
     log;
   
-    constructor(nome_lista: string, usuarios: string[]) {
+    constructor(nome_lista: string, usuarios: string[], admin_lista: any) {
       this.nome_lista = nome_lista;
+      this.admin_lista = admin_lista;
       this.usuarios = usuarios;
       this.itens = [];
       this.log = [];

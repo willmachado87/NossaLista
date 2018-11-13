@@ -48,8 +48,7 @@ export class AddItemPage {
           const indice = l2.findIndex(obj => obj.nome_item == this.nome_antigo);
           this.util.addLogList(this.idLista, "Alterou item", l2[indice] , Object.assign({}, itemEditado) );
           l2.splice(indice, 1, Object.assign({}, itemEditado) );          
-          refdoc.doc(this.idLista).update({ itens: l2 });
-          
+          refdoc.doc(this.idLista).update({ itens: l2 });         
         }         
       }else {
         this.util.showToast("Documento não encontrado","bottom",2000);
@@ -59,17 +58,14 @@ export class AddItemPage {
   }
 
   //remove  item da lista no BD
-  removeItem(i){    
+  removeItem(){    
     let refdoc = this.bd.collection('listas');
-    refdoc.doc(this.idLista).ref.get().then(c => {
-      if (c.exists) {        
-        let l2 = c.data().itens;      
-        const indice = l2.findIndex(obj => obj.nome_item == this.item.nome_item);    
-        l2.splice(indice, 1);          
-        refdoc.doc(this.idLista).update({ itens: l2 });
-      } else {       
-       this.util.showToast("Documento não encontrado","bottom",2000);
-      }
+    refdoc.doc(this.idLista).ref.get().then(data => {             
+      let l2 = data.data().itens;      
+      const indice = l2.findIndex(obj => obj.nome_item == this.item.nome_item);          
+      l2.splice(indice, 1);          
+      refdoc.doc(this.idLista).update({ itens: l2 });
+      this.util.addLogList(this.idLista, "Deletou item", this.item, null);      
     })
     this.navCtrl.pop();      
   }
@@ -119,5 +115,6 @@ export class AddItemPage {
       this.util.showToast("Não são aceitos Numeros Negativos","bottom",2000);      
     }
   }
+  
   
 }
