@@ -7,7 +7,7 @@
 
 <ion-content padding *ngIf="usuario != null"> 
   <ion-list class="list">    
-    <ion-item  *ngFor="let i of lista | async">      
+    <ion-item ion-item *ngFor="let i of lista | async">      
       <p style="font-size: 17px; margin-top: 3%; width: 72%;" (click)="goList(i.id)">{{i.nome_lista}} </p>      
       <ion-icon class="icoLixo" name="trash" (click)="openModal(i)" style="margin-left: 6%;"></ion-icon>
       <ion-icon class="fa fa-pencil-square-o icoEdit" (click)="btEditList(i.id)" ></ion-icon>            

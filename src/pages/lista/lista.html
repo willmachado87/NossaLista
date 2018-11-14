@@ -22,18 +22,19 @@
   
   <ion-grid>
     <ion-row *ngFor="let i of lista2.itens">
-      <ion-col col-5 style="text-align:left; font-size: 18px;">
-        <label (click)="editarItem(i)"> {{i.nome_item}} </label>
+      <ion-col col-5 style="text-align:left;">
+        <label class="fontStandard" (click)="editarItem(i)"> {{i.nome_item}} </label>
       </ion-col>
       
-      <ion-col col-3 style="text-align:center; font-size: 18px;">
-          <label (click)="editarItem(i)"> {{i.qtd}} </label>
+      <ion-col col-3 style="text-align:center;">
+          <label class="fontStandard" (click)="editarItem(i)"> {{i.qtd}} </label>
       </ion-col>
       
-      <ion-col col-4 style="text-align:center; font-size: 18px;">
+      <ion-col col-4 class="fontStandard" style="text-align:center;">
           <ion-checkbox color="secondary" checked="{{i.comprado}}" (click)="comprou(i)"
-          style="margin-left: 25%;"></ion-checkbox>
-      </ion-col>        
+          style="margin-left: 25%; margin-top: -13%; margin-bottom: 10%;"></ion-checkbox>
+      </ion-col>
+            
     </ion-row>
   </ion-grid> 
   

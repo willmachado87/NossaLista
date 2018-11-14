@@ -1,19 +1,5 @@
-.input{
-    margin: 3% 1%;
-    width: 99%;
-}
-
-.icon1{
-    display: inline-block;
-    font-size: 3.1em;
-    float: left;    
-    color: #1fc11f;
-    margin: 5% 0%;
-}
-
 .icoLixoCard {
-    font-size: 2.0em;;
-    //float: right;
+    font-size: 2.0em;    
     margin-top: -40%;
     margin-left: 35%;
     color: red;
@@ -31,5 +17,13 @@
     text-align: center;
     margin-top: -50%;
     margin-left: 16%;
+}
+
+.textoInput {
+    font-size: 16px;
+    width: 90%;    
+    border: none;
+    border-bottom: solid 1px #8a8989;
+    text-align: center;
 }
     

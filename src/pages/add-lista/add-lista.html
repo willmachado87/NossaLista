@@ -9,22 +9,22 @@
     <ion-grid>
       <ion-row>
         <ion-col col-4><p class="fontStandard">Nome Lista:</p></ion-col>        
-        <ion-col col-8><input class="textoItem" style="margin-top: 4%;" type="text" [(ngModel)]="nameList"></ion-col>
+        <ion-col col-8><input class="textoInput" style="margin-top:4%;" type="text" [(ngModel)]="nameList"></ion-col>
       </ion-row> <br/>
 
       <ion-row>
-        <ion-col col-8 style="text-align: center;" class="fontStandard"> <input class="textoItem" type="email" [(ngModel)]="email"
+        <ion-col col-8 style="text-align: center;" class="fontStandard"> <input class="textoInput" type="email" [(ngModel)]="email"
               (keyup.enter)="btAddUserEdit()" placeholder="Digite e-mail da pessoa" > 
         </ion-col>
         <ion-col col-4>
-          <button ion-button color="primary" (click)="btAddUserEdit()" style="margin-top: -8%; width: 96%;"> 
+          <button ion-button color="primary" (click)="btAddUserEdit()" style="margin-top: -13%; width: 96%;"> 
             Adicionar
           </button>
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col col-12 style="text-align: center; margin-bottom: -7%;"><p class="fontStandard">Lista compartilhada com:</p></ion-col>
+        <ion-col col-12 style="text-align: center"><p class="fontStandard">Lista compartilhada com:</p></ion-col>
       </ion-row>
     </ion-grid>
 
@@ -44,33 +44,39 @@
         </ion-row> 
       </ion-card-content>
     </ion-card>
-    <p style="padding-top: 6%; visibility: hidden">&nbsp</p>   
 
-    <ion-fab bottom center style="width: 35%; margin-left: -20%;;">
-      <button ion-fab class="fontBt" style="border-radius: 20px; width: 123%;" (click)="addListBd()">
-        Salvar Edições                
-      </button>     
-    </ion-fab>   
+
+    <div text-center style="margin-top: 10%;">
+        <button class="fontBt" ion-button style="border-radius: 20px; width: 50%;" (click)="addListBd()" [disabled]="nameList == null || nameList == undefined || nameList == '' ">
+          Salvar Edições
+        </button>     
+      </div>
 </ion-content>
+
+
+
+
+
+
 
 
 <ion-content padding *ngIf="editList == false">
   <ion-grid>
     <ion-row>
       <ion-col col-4><p class="fontStandard">Nome Lista:</p></ion-col>
-      <ion-col col-8> <input class="textoItem" style="margin-top:4%;" placeholder="*Campo Obrigatorio" [(ngModel)]="nameList"> </ion-col>
+      <ion-col col-8> <input class="textoInput" style="margin-top:4%;" placeholder="*Campo Obrigatorio" [(ngModel)]="nameList"> </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col col-12 style="margin-bottom: -7%"><p class="fontStandard">Compartilhar esta lista com:</p></ion-col>
+      <ion-col col-12 style="text-align: center"><p class="fontStandard">Compartilhar esta lista com:</p></ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col col-8 style="text-align: center;"> <input class="textoItem" type="email" [(ngModel)]="email"
+      <ion-col col-8 style="text-align: center;"> <input class="textoInput" type="email" [(ngModel)]="email"
           (keyup.enter)="btAddUser()" placeholder="Digite e-mail da pessoa"> </ion-col>
       <ion-col col-4>
         <button ion-button color="primary" (click)="btAddUser()" [disabled]="nameList == null || nameList == undefined || nameList == '' "
-          style="margin-top: -8%; width: 96%;">
+          style="margin-top: -13%; width: 96%;">
           Adicionar
         </button>
       </ion-col>
@@ -92,12 +98,15 @@
       </ion-row>
     </ion-card-content>
   </ion-card>
-  <p style="padding-top: 6%; visibility: hidden">&nbsp</p>
-  <ion-fab bottom center style="width: 35%; margin-left: -20%;;">
-    <button ion-fab class="fontBt" style="border-radius: 20px; width: 123%;" (click)="addListBd()" [disabled]="nameList == null || nameList == undefined || nameList == '' ">
+
+  <div text-center style="margin-top: 10%;">
+    <button class="fontBt" ion-button style="border-radius: 20px; width: 50%;" (click)="addListBd()" [disabled]="nameList == null || nameList == undefined || nameList == '' ">
       Salvar Lista
     </button>     
-  </ion-fab>    
+  </div>
+  
+        
+    
 </ion-content>
 
 

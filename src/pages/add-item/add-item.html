@@ -6,27 +6,29 @@
 </ion-header>
 
 <ion-content padding *ngIf="editar == false">
-  <table *ngFor="let i of itensAdd; let ind = index">    
-    <tr>
-      <td><p class="fontStandard"> Nome: </p></td>
-      <td><input type="text" class="textoItem" [(ngModel)]="i.nome_item" placeholder="*Campo Obrigatorio" ></td>
-      <td><ion-icon class="icoLixo2" name="trash" (click)="delItenArray(ind)"></ion-icon></td>
-    </tr>
+  <ion-grid *ngFor="let i of itensAdd; let ind = index"> 
+      <ion-row>
+        <ion-col col-3><p class="fontStandard"> Nome:</p></ion-col>
+        <ion-col col-7><input type="text" class="textoItem" [(ngModel)]="i.nome_item" placeholder="*Campo Obrigatorio" ></ion-col>
+        <ion-col col-2><ion-icon class="icoLixo2" name="trash" (click)="delItenArray(ind)"></ion-icon></ion-col>
+      </ion-row>
+      
+      <ion-row style="margin-top: -3%;">
+          <ion-col col-4><p class="fontStandard"> Quantidade: </p></ion-col>          
+          <ion-col col-8 style="text-align: center; margin-top: -3%;">
+            <button ion-button class="botaoLista" (click)="decrementQtd(ind)"> - </button> 
+            <input type="number" class="textoItem2" [(ngModel)]="i.qtd" (blur)="validCamp(ind)"> 
+            <button ion-button class="botaoLista" (click)="incrementQtd(ind)"> + </button>
+          </ion-col>
+      </ion-row>
 
-    <tr>
-      <td><p class="fontStandard"> Quantidade: </p></td>
-      <td style="text-align: center">
-        <button ion-button class="botaoLista" (click)="decrementQtd(ind)"> - </button> 
-        <input type="number" class="textoItem2" [(ngModel)]="i.qtd" (blur)="validCamp(ind)"> 
-        <button ion-button class="botaoLista" (click)="incrementQtd(ind)"> + </button>
-      </td> 
-    </tr>
+      <ion-row style="margin-top: -4%;">
+        <ion-col col-4><p class="fontStandard"> Observação: </p></ion-col>
+        <ion-col col-8><textarea [(ngModel)]="i.obs" rows="5" cols="26" class="textoItem3"></textarea></ion-col>        
+      </ion-row>
+      
+    </ion-grid>
 
-    <tr>
-      <td style="float: right;"><p class="fontStandard"> Observação: </p></td>
-      <td><textarea [(ngModel)]="i.obs" rows="5" cols="30" class="textoItem3"></textarea></td>
-    </tr>    
-  </table>
   <button ion-button color="secondary" (click)="addOtherItem()" [disabled]="itensAdd[itensAdd.length-1].nome_item == null || itensAdd[itensAdd.length-1].nome_item == '' ">
       Adicionar outro Item
   </button>
@@ -38,27 +40,27 @@
 </ion-content>
 
 <ion-content padding *ngIf="editar == true">
-  <table>    
-    <tr>
-      <td><p class="fontStandard"> Nome: </p></td>
-      <td><input class="textoItem" [(ngModel)]="item.nome_item"></td>
-    </tr>
+  <ion-grid *ngFor="let i of itensAdd; let ind = index"> 
+    <ion-row>
+      <ion-col col-4><p class="fontStandard"> Nome:</p></ion-col>
+      <ion-col col-8 style="margin-left: -8%;"><input class="textoItem" [(ngModel)]="item.nome_item"></ion-col>
+    </ion-row>
 
-    <tr>
-      <td> <p class="fontStandard"> Quantidade: </p> </td>
-      <td style="text-align: center">
-        <button ion-button class="botaoLista" (click)="decrementQtd()">-</button> 
-        <input class="textoItem2" [(ngModel)]="item.qtd" (blur)="validCamp(ind)"> 
-        <button ion-button class="botaoLista" (click)="incrementQtd()">+</button>
-      </td>
-    </tr>
+    <ion-row style="margin-top: -3%;">
+        <ion-col col-4><p class="fontStandard"> Quantidade: </p></ion-col>          
+        <ion-col col-8 style="text-align: center; margin-top: -3%;">
+          <button ion-button class="botaoLista" (click)="decrementQtd()">-</button> 
+          <input class="textoItem2" [(ngModel)]="item.qtd" (blur)="validCamp(ind)"> 
+          <button ion-button class="botaoLista" (click)="incrementQtd()">+</button>
+        </ion-col>
+    </ion-row>
 
-    <tr>
-      <td style="float: right;"> <p class="fontStandard"> Observação: </p> </td>
-      <td><textarea [(ngModel)]="item.obs" rows="5" cols="30" class="textoItem3"></textarea></td>
-    </tr>   
-  </table>
-  
+    <ion-row style="margin-top: -4%;">
+      <ion-col col-4><p class="fontStandard"> Observação: </p></ion-col>
+      <ion-col col-8><textarea [(ngModel)]="item.obs" rows="5" cols="26" class="textoItem3"></textarea></ion-col>        
+    </ion-row>
+
+  </ion-grid>  
   <br /><br /><br />
   <button ion-button full style="margin-bottom: 3%;" (click)="addItemBd()">Salvar</button>
   <button ion-button full color="danger" (click)="removeItem()">Deletar</button>
