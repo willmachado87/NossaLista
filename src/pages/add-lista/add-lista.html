@@ -17,7 +17,7 @@
               (keyup.enter)="btAddUserEdit()" placeholder="Digite e-mail da pessoa" > 
         </ion-col>
         <ion-col col-4>
-          <button ion-button color="primary" (click)="btAddUserEdit()" style="margin-top: -13%; width: 96%;"> 
+          <button ion-button color="primary" (click)="btAddUserEdit()" class="btAdd"> 
             Adicionar
           </button>
         </ion-col>
@@ -34,11 +34,11 @@
         <ion-row>
           <ion-col col-8>E-mail: {{i.email}}</ion-col>
           <ion-col col-4 *ngIf="i.id != this.user.uid"><ion-icon class="icoLixoCard" name="trash" (click)="removeUserList(i,ind)">
-            <p style="color:red;">Excluir</p>           
+            <p style="color:#fdf700;">Excluir</p>           
           </ion-icon></ion-col>
 
           <ion-col col-4 *ngIf="i.id == this.user.uid"><ion-icon name="ios-walk" class="icoExit" (click)="BtExitList()">
-            <p *ngIf="i.id == this.user.uid" style="color:red;">Sair da Lista</p>           
+            <p *ngIf="i.id == this.user.uid" style="color:#fdf700;">Sair da Lista</p>           
           </ion-icon></ion-col>
 
         </ion-row> 
@@ -52,12 +52,6 @@
         </button>     
       </div>
 </ion-content>
-
-
-
-
-
-
 
 
 <ion-content padding *ngIf="editList == false">
@@ -76,7 +70,7 @@
           (keyup.enter)="btAddUser()" placeholder="Digite e-mail da pessoa"> </ion-col>
       <ion-col col-4>
         <button ion-button color="primary" (click)="btAddUser()" [disabled]="nameList == null || nameList == undefined || nameList == '' "
-          style="margin-top: -13%; width: 96%;">
+          class="btAdd">
           Adicionar
         </button>
       </ion-col>
@@ -93,7 +87,7 @@
       <ion-row>
         <ion-col col-8>E-mail: {{i.email}}</ion-col>
         <ion-col col-4><ion-icon class="icoLixoCard" name="trash" (click)="removeUserList(ind)">
-            <p style="color:red;">Excluir</p>
+            <p style="color:#fdf700;">Excluir</p>
         </ion-icon></ion-col>
       </ion-row>
     </ion-card-content>

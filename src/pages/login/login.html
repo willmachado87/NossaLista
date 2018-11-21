@@ -1,34 +1,55 @@
-
-<ion-header *ngIf="autenticado == false">
-  <ion-navbar>
-    <ion-title style="text-align:center; margin-right: 9%;">Login</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding *ngIf="autenticado == false">
+<ion-content class="bgLogin" padding *ngIf="autenticado == false">
   <ion-grid>
-    <ion-row>
-      <ion-col col-12><p class="font1" style="padding-top: 13%;">Login com E-mail</p></ion-col>
-    </ion-row>
+      <ion-row>
+        <ion-col col-12 class="font1">         
+          <img src="../../assets/imgs/branco.png" style="max-width: 70%;"> 
+        </ion-col>
+      </ion-row>
+           
+      <ion-row>     
+        <ion-col col-12 style="text-align: center;"><input class="texto2" [(ngModel)]="email" placeholder="E-mail"></ion-col>
+      </ion-row>
+    
+      <ion-row>   
+        <ion-col col-12 style="text-align: center;"><input class="texto2" placeholder="Senha" type="password" [(ngModel)]="senha" (keyup.enter)="loginEmailPassword()"> </ion-col>
+      </ion-row> 
+        
+      <ion-row>
+        <ion-col col-12 class="font1">
+          <button ion-button color="primary" (click)="loginEmailPassword()" style="border-radius: 20px; width: 40%;"> Entrar </button>        
+        </ion-col>      
+      </ion-row>
+        
+      <ion-row>
+          <ion-col col-12 style="text-align: center"> 
+            <p  class="fontLink"  (click)="btCadastrar()"> Não possui conta? cadastre-se AQUI</p>                
+          </ion-col>      
+      </ion-row>
 
-    <ion-row>
-      <ion-col col-4><p class="font1">E-mail:</p></ion-col>
-      <ion-col col-8><input class="texto2" [(ngModel)]="email"></ion-col>
-    </ion-row>
 
-    <ion-row>
-      <ion-col col-4><p class="font1">Senha:</p></ion-col>
-      <ion-col col-8><input class="texto2" type="password" [(ngModel)]="senha"></ion-col>
-    </ion-row> 
+
+
+
+
+
+
+
+
+    
     
     <ion-row>
-      <ion-col col-12 class="font1">
-        <button ion-button color="primary" (click)="loginEmailPassword()"> Entrar</button>
-        <button ion-button color="danger" (click)="btCadastrar()"> Cadastrar</button>
+        <ion-col col-12 style="text-align: center; size: 14px;">
+          <p>------------------------------- OU -------------------------------</p>
+        </ion-col>
+    </ion-row>  
+    
+    <ion-row>
+      <ion-col col-12 class="font1">        
+        <button ion-button block icon-left color="facebook" (click)="logInFacebook()" class="btface" >
+          <ion-icon class="iconFace" name="logo-facebook"></ion-icon> Entrar com facebook 
+        </button>  
       </ion-col>
-      
-    </ion-row>
-  </ion-grid>
-  
-  
+    </ion-row>    
+
+  </ion-grid> 
 </ion-content>

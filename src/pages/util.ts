@@ -2,7 +2,7 @@ import { Log } from './model';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Injectable } from '@angular/core';
 import { ToastController, LoadingController } from 'ionic-angular';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 
 @Injectable()
 export class Util {

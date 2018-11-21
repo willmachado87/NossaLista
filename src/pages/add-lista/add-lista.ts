@@ -1,9 +1,8 @@
-import { ModalUserExitPage } from './../modal-user-exit/modal-user-exit';
 import { Util } from './../util';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalOptions, ModalController, Modal } from 'ionic-angular';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import { Observable, Subscription } from 'rxjs';
 import { Lista, User } from '../model';
 

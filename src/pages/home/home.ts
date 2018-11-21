@@ -6,7 +6,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Observable } from 'rxjs-compat/Observable';
 import { ListaPage } from '../lista/lista';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import { Util } from '../util';
 
 @Component({
@@ -24,6 +24,7 @@ export class HomePage {
               public modalCtrl: ModalController, public util: Util) {    
     
     this.usuario = firebase.auth().currentUser;
+    this.checkLoginNewUser();
     this.listaColeçao = bd.collection('listas', ref => {      
       return ref.where('usuarios','array-contains',this.usuario.uid).orderBy('nome_lista','asc');
     });    
@@ -78,5 +79,18 @@ export class HomePage {
       }
     });            
   } 
+
+  checkLoginNewUser(){
+    let refdoc = this.bd.collection('usuarios').doc(this.usuario.uid).ref.get()
+    .then( data => {
+      if (data.exists) {        
+      console.log("exists");                 
+      }else{                          
+        let newUser = ({id: this.usuario.uid, nomeDisplay: this.usuario.displayName, email: this.usuario.email});
+        this.bd.collection('usuarios').doc(this.usuario.uid).set(newUser);  
+      }  
+    });   
+
+  }
 
 }

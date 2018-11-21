@@ -7,7 +7,7 @@ import { LoginPage } from '../pages/login/login';
 import { CadastroLoginPage } from '../pages/cadastro-login/cadastro-login';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { AddItemPage } from './../pages/add-item/add-item';
+import { AddItemPage } from './../pages/add-item/add-item'; 
 import { ListaPage } from '../pages/lista/lista';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { AddListaPage } from '../pages/add-lista/add-lista';
@@ -19,7 +19,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule} from 'angularfire2/auth';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Facebook } from '@ionic-native/facebook';
 
 @NgModule({
   declarations: [
@@ -46,8 +46,8 @@ import { ReactiveFormsModule } from '@angular/forms';
       messagingSenderId: "87417686496"
     }),
     AngularFirestoreModule.enablePersistence(),
-    AngularFireAuthModule,
-    ReactiveFormsModule    
+    AngularFireAuthModule
+       
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -63,10 +63,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     LogPage    
   ],
   providers: [
-    StatusBar,
+    StatusBar, 
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Util    
+    Util,
+    Facebook    
   ]
 })
 export class AppModule {}

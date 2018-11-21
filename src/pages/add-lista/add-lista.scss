@@ -2,7 +2,7 @@
     font-size: 2.0em;    
     margin-top: -40%;
     margin-left: 35%;
-    color: red;
+    color: #fdf700;
     text-align: center;
 }
 
@@ -13,7 +13,7 @@
 
 .icoExit{    
     font-size: 2.7em;
-    color: red;
+    color: #fdf700;
     text-align: center;
     margin-top: -50%;
     margin-left: 16%;
@@ -23,7 +23,13 @@
     font-size: 16px;
     width: 90%;    
     border: none;
-    border-bottom: solid 1px #8a8989;
+    border-bottom: solid 1px #3521af;
     text-align: center;
+}
+
+.btAdd{
+    margin-top: -13%;
+    width: 96%;
+    border-radius: 10px;
 }
     

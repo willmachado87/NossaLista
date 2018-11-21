@@ -1,13 +1,43 @@
 .texto2{
     font-size: 17px;
-    width: 95%;    
+    width: 90%;
     border: none;
-    border-bottom: solid 1px #8a8989;    
-    margin-top: 7%;
-    height: 21px;   
-}
+    border-bottom: solid 1px #8a8989;
+    margin-top: 4%;
+    text-align: center;
+    color: black;
+    border-radius: 20px;
+    height: 34px;
+}    
 
 .font1{
+    //font-family: 'El Messiri', sans-serif;
     text-align: center; 
     font-size: 16px;
+}
+
+.fontLink{    
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;    
+    margin: 3%;
+}
+
+.iconFace{
+    font-size: 2.2em !important;    
+}
+
+.btface{
+    width: 80%;    
+    margin: 0 auto;
+}
+
+.bgLogin{
+    background: darkslateblue;
+    color: white;
+}
+
+input.texto2.ng-untouched.ng-pristine.ng-valid {
+    border-radius: 20px;
+    height: 35px;
 }

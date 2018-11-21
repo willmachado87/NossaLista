@@ -29,11 +29,12 @@
       
     </ion-grid>
 
-  <button ion-button color="secondary" (click)="addOtherItem()" [disabled]="itensAdd[itensAdd.length-1].nome_item == null || itensAdd[itensAdd.length-1].nome_item == '' ">
+  <button ion-button color="secondary" (click)="addOtherItem()" [disabled]="itensAdd[itensAdd.length-1].nome_item == null || itensAdd[itensAdd.length-1].nome_item == '' "
+   style="margin-left: 20%;">
       Adicionar outro Item
   </button>
   <br/><br/><br/>
-  <button ion-button full style="margin-bottom: 3%;" (click)="addItemBd()"
+  <button ion-button full style="margin-bottom: 3%; border-radius: 20px;" (click)="addItemBd()"
           [disabled]="itensAdd[itensAdd.length-1].nome_item == null || itensAdd[itensAdd.length-1].nome_item == ''">
      Salvar 
   </button>

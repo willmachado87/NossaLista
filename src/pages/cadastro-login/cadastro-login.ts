@@ -1,9 +1,10 @@
+import { Util } from './../util';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Page } from 'ionic-angular/umd/navigation/nav-util';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../login/login';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import { AngularFirestore } from 'angularfire2/firestore';
 
 
@@ -19,11 +20,9 @@ export class CadastroLoginPage {
   senha: string;
   confSenha: string
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public loadCtrl: LoadingController, public afb: AngularFireAuth,
-    public bd: AngularFirestore) {
-
-}
+  constructor(public navCtrl: NavController, public util: Util, 
+              public loadCtrl: LoadingController, public afb: AngularFireAuth,
+              public bd: AngularFirestore) {}
 
   salvarLogin(){
     if(this.senha == this.confSenha){
@@ -35,13 +34,14 @@ export class CadastroLoginPage {
           photoURL: null                          
         });
         this.loading(LoginPage,3000,true);
-        setTimeout(() => {
+        setTimeout(() => { 
           let usuarioBD = {nomeDisplay: usuario.displayName, email: usuario.email, id: usuario.uid};          
           this.bd.collection('usuarios').doc(usuario.uid).set( Object.assign({}, usuarioBD) );         
           firebase.auth().signOut;
         }, 3000);            
     }).catch();  
     }else{
+      this.util.showToast("As senhas Digitada são diferentes", "botton", 3000);
       console.log("As senhas Digitada não coincidem ");      
     }
      

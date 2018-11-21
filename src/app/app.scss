@@ -19,3 +19,45 @@ $fa-font-path: "../assets/fonts" !default;
 i[class^="fa-"], ion-icon[class^="fa-"] {    
    font-family: "FontAwesome" !important;
 }
+
+//top
+.toolbar-background.toolbar-background-md {
+   background: darkslateblue;
+   color: white;
+}  
+
+// font
+.toolbar-title-md {
+   padding: 0 12px;
+   font-size: 2rem;
+   font-weight: 500;
+   color: #ffffff;
+} 
+
+// seta
+button.back-button.disable-hover.bar-button.bar-button-md.back-button-md.bar-button-default.bar-button-default-md.show-back-button {
+   color: white;
+}
+
+//tabs
+.tabbar.show-tabbar {
+   background: darkslateblue;   
+}
+.tabs-md .tab-button {   
+   color: rgb(255, 255, 255);   
+}
+.tabs-md .tab-button-icon {   
+   color: rgb(255, 255, 255);
+}   
+.tabs-md .tab-button[aria-selected=true] .tab-button-icon {
+   color: #fdf700;  
+}
+.tabs-md .tab-button[aria-selected=true] {
+   color: #fdf700;   
+}
+
+//card
+.card-md {   
+   border-radius: 7px;   
+   background: #6255b08a;
+}   

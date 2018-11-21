@@ -1,10 +1,8 @@
+import { Facebook } from '@ionic-native/facebook';
 import { LoginPage } from './../login/login';
-import { Observable } from 'rxjs';
-import { AngularFirestore } from 'angularfire2/firestore';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import * as firebase from 'firebase';
-import { timeout } from 'rxjs/operators';
+import { IonicPage, NavController } from 'ionic-angular';
+import firebase from 'firebase';
 
 @IonicPage()
 @Component({
@@ -16,13 +14,14 @@ export class PerfilPage {
   
   user:any
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public facebook: Facebook) {
     this.user = firebase.auth().currentUser;
   }
 
   logout(){
+    this.facebook.logout();
     firebase.auth().signOut();    
-    this.navCtrl.parent.parent.setRoot(LoginPage);    
+    this.navCtrl.parent.parent.setRoot(LoginPage);     
   }
 
   ionViewDidLoad() {
