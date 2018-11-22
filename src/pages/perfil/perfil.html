@@ -1,10 +1,20 @@
 <ion-header>
   <ion-navbar>
-    <ion-title style="text-align:center; margin-right: 9%;">perfil</ion-title>
+    <ion-title style="text-align:center; margin-right: 9%;">Perfil</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <p>Usuario: {{user.displayName}}</p>
-  <button ion-button full color="danger" (click)="logout()">Sair</button>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3><img src="{{user.photoURL}}"></ion-col>
+      <ion-col col-9><p>Nome: {{user.displayName}}</p> <p>E-mail: {{user.email}}</p> </ion-col>        
+    </ion-row>
+  </ion-grid>  
+
+  <button ion-button block icon-left color="danger" (click)="logout()">
+      <ion-icon class="fa-sign-out" ></ion-icon> 
+      Sair do Aplicativo 
+  </button> 
+
 </ion-content>

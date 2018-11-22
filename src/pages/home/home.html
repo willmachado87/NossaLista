@@ -1,11 +1,16 @@
 
-<ion-header *ngIf="usuario != null">
+<ion-header>
   <ion-navbar>
     <ion-title style="text-align:center;">Listas</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding *ngIf="usuario != null"> 
+<ion-content padding>
+  <div class="alignCenter" *ngIf="listEmpty == true "> 
+      <p>Voce não tem nenhuma lista no momento</p> 
+      <p>Aperte no botão + para adicionar</p>
+  </div>
+
   <ion-list class="list">    
     <ion-item ion-item *ngFor="let i of lista | async">      
       <p style="font-size: 17px; margin-top: 3%; width: 72%;" (click)="goList(i.id)">{{i.nome_lista}} </p>      

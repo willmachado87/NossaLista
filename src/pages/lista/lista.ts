@@ -1,6 +1,6 @@
 import { Util } from './../util';
 import { AddListaPage } from './../add-lista/add-lista';
-import { Observable } from 'rxjs-compat/Observable';
+import { Observable, Subscription } from 'rxjs';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -13,21 +13,24 @@ import { LogPage } from '../log/log';
   templateUrl: 'lista.html',
 })
 
-export class ListaPage {
+export class ListaPage{
   
-  idLista: string;  
+  idLista: string;
+  itemEmpty: boolean;   
   lista;
-  lista2:Observable<any[]>;   
+  lista2:Observable<any[]>;
+  subscr: Subscription;   
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-               private bd: AngularFirestore, public util:Util) {  
-    this.idLista = navParams.get("id");       
-    this.getall();    
-  }
+               private bd: AngularFirestore, public util:Util) {}
+
+  ionViewDidLoad() {
+    this.idLista = this.navParams.get("id");       
+    this.getall();
+  } 
   
-  ionViewWillEnter() {
-    console.log('WILL ENTER ListaPage');
-    this.getall();    
+  ngOnDestroy() {      
+    this.subscr.unsubscribe();    
   }
 
   btEditList(){
@@ -39,13 +42,11 @@ export class ListaPage {
   }
   
   getall() {    
-    this.lista = this.bd.doc('listas/'+this.idLista).valueChanges();   
-    this.lista2 = this.lista;
-
-    this.lista.subscribe(u =>{
-      this.lista2 = u;                      
+    this.lista = this.bd.doc('listas/'+this.idLista).valueChanges(); 
+    this.subscr = this.lista.subscribe(res =>{
+      this.lista2 = res.itens;                            
     });
-  }
+  }  
 
   btAddItem() {
     this.navCtrl.push(AddItemPage, { id: this.idLista, editar: false });

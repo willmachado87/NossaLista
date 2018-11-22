@@ -48,7 +48,7 @@ export class LoginPage {
     this.facebook.login(['public_profile','email']) 
     .then( (res:FacebookLoginResponse) =>{
       this.afb.auth.signInWithCredential(firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken));      
-      this.util.loading(3000); setTimeout(()=>{this.navCtrl.setRoot(TabsPage)},3000);                 
+      this.util.loading(5000); setTimeout(()=>{this.navCtrl.setRoot(TabsPage)},5000);                 
     });    
   }
 

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.william.nossaLista" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.william.nossaLista" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Nossa Lista</name>
-    <description>Aplicativo para cria uma lista de compras compartilhada entre amigos, familiares, funcionarios etc</description>
+    <description>Aplicativo para criar lista de compras compartilhada entre amigos, familiares, funcionarios etc</description>
     <author email="shionwyll@gmail.com" href="http://dragontecnologia.ga">Dragon Tecnologia</author>
     <content src="index.html" />
     <access origin="*" />
@@ -87,5 +87,5 @@
         <variable name="APP_NAME" value="login_nossaLista" />
         <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.37.0" />
     </plugin>
-    <engine name="android" spec="^7.1.1" />
+    <engine name="android" spec="7.1.1" />
 </widget>

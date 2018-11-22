@@ -34,11 +34,11 @@
         <ion-row>
           <ion-col col-8>E-mail: {{i.email}}</ion-col>
           <ion-col col-4 *ngIf="i.id != this.user.uid"><ion-icon class="icoLixoCard" name="trash" (click)="removeUserList(i,ind)">
-            <p style="color:#fdf700;">Excluir</p>           
+            <p style="color:#e7eb13;">Excluir</p>           
           </ion-icon></ion-col>
 
           <ion-col col-4 *ngIf="i.id == this.user.uid"><ion-icon name="ios-walk" class="icoExit" (click)="BtExitList()">
-            <p *ngIf="i.id == this.user.uid" style="color:#fdf700;">Sair da Lista</p>           
+            <p *ngIf="i.id == this.user.uid" style="color:#e7eb13;">Sair da Lista</p>           
           </ion-icon></ion-col>
 
         </ion-row> 
@@ -87,7 +87,7 @@
       <ion-row>
         <ion-col col-8>E-mail: {{i.email}}</ion-col>
         <ion-col col-4><ion-icon class="icoLixoCard" name="trash" (click)="removeUserList(ind)">
-            <p style="color:#fdf700;">Excluir</p>
+            <p style="color:#e7eb13;">Excluir</p>
         </ion-icon></ion-col>
       </ion-row>
     </ion-card-content>
@@ -97,9 +97,7 @@
     <button class="fontBt" ion-button style="border-radius: 20px; width: 50%;" (click)="addListBd()" [disabled]="nameList == null || nameList == undefined || nameList == '' ">
       Salvar Lista
     </button>     
-  </div>
-  
-        
+  </div>        
     
 </ion-content>
 

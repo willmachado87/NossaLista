@@ -104,7 +104,7 @@ export class AddItemPage {
   incrementQtd(index:number) {
     let ifElse = ( this.editar == true ? this.item.qtd++ : this.itensAdd[index].qtd++ );    
   }
-
+  //valida o campo
   validCamp(index){
     if(this.editar == true && this.item.qtd <= 0){
       this.item.qtd = 0;      

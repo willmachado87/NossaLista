@@ -8,6 +8,7 @@ import { ListaPage } from '../lista/lista';
 import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
 import { Util } from '../util';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'page-home',
@@ -17,19 +18,39 @@ export class HomePage {
   
   lista:Observable<any>;
   listaColeçao : AngularFirestoreCollection;
+  listEmpty: boolean;
+  subs: Subscription; 
   usuario:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public bd: AngularFirestore, public afb:AngularFireAuth, 
-              public modalCtrl: ModalController, public util: Util) {    
-    
+              public modalCtrl: ModalController, public util: Util) {   
+  }
+
+  ionViewDidLoad() {
     this.usuario = firebase.auth().currentUser;
     this.checkLoginNewUser();
-    this.listaColeçao = bd.collection('listas', ref => {      
+    this.listaColeçao = this.bd.collection('listas', ref => {      
       return ref.where('usuarios','array-contains',this.usuario.uid).orderBy('nome_lista','asc');
+    });      
+    this.getallList();
+  }  
+
+  getallList() {
+    this.lista = this.listaColeçao.snapshotChanges().pipe(
+      map(actions => actions.map(res => {
+        let data = res.payload.doc.data();       
+        let id = res.payload.doc.id;
+        return { id, ...data };
+      })) 
+    );
+    this.subs = this.lista.subscribe(res => {
+      let result = (res.length == 0 ? this.listEmpty = true : this.listEmpty = false);            
     });    
-    console.log("usuario logado: ",this.usuario);    
-    this.getallList();    
+  }
+
+  ngOnDestroy() {    
+    this.subs.unsubscribe();    
   }
 
   openModal(lista:any){    
@@ -57,20 +78,10 @@ export class HomePage {
 
   btEditList(id:string){
     this.navCtrl.push(AddListaPage,{idLista:id, editList:true});
-  } 
-
-  getallList() {
-    this.lista = this.listaColeçao.snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        let data = a.payload.doc.data();
-        let id = a.payload.doc.id;       
-        return { id, ...data };
-      }))
-    )
   }
 
-  del(idList:string){    
-    let refDoc = this.bd.collection("listas").doc(idList).ref.get().then( data => {    
+  del(idList:string){     
+    this.bd.collection("listas").doc(idList).ref.get().then( data => {    
       if(data.data().admin_lista.id == this.usuario.uid){  
         this.bd.collection('listas').doc(idList).delete();
         this.util.showToast("Lista Deletada com Sucesso", "botton", 3000);
@@ -81,7 +92,7 @@ export class HomePage {
   } 
 
   checkLoginNewUser(){
-    let refdoc = this.bd.collection('usuarios').doc(this.usuario.uid).ref.get()
+    this.bd.collection('usuarios').doc(this.usuario.uid).ref.get()
     .then( data => {
       if (data.exists) {        
       console.log("exists");                 
@@ -89,8 +100,7 @@ export class HomePage {
         let newUser = ({id: this.usuario.uid, nomeDisplay: this.usuario.displayName, email: this.usuario.email});
         this.bd.collection('usuarios').doc(this.usuario.uid).set(newUser);  
       }  
-    });   
-
-  }
+    }); 
+  }  
 
 }
