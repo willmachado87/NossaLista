@@ -11,7 +11,7 @@ Foi utilizado o trello para fazer o controle dos backlogs e das sprints.
 ![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/infoUS.png)
 
 ## Roadmap
-Abaixo segue o planegamento das sprints com planejamento de duração de 1 semana.
+Abaixo segue o planegamento das sprints com planejamento de duração de 1 semana para cada.
 # Sprint 1 
 ![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/sprint1.JPG)
 Nesta sprint inicial foi priorizado as features que dão mais valor ao projeto com Criar uma nova lista, visualizar itens da lista, e visualizar as listas de compras.
@@ -30,7 +30,7 @@ de biblioteca RX que não estava deixando eu salvar localmente os dados.
 ![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/sprint3.JPG)
 Sprint 3 teve como features a ser desenvolvidas atualiza item da lista, adicionar usuários a lista e criar vários itens ao mesmo tempo.
 
-Está sprint teve a duração de 1 semanas.
+Está sprint teve a duração de 1 semana.
 
 # Sprint 4 
 ![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/sprint4_Atual.JPG)
