@@ -8,10 +8,13 @@ Para o desenvolvimento do layout projeto foi utilizado protótipos de media qual
 
 ## Protótipos de Alta Fidelidade
 Os protótipos de alta fidelidade por enquanto são estes mas ainda será feita melhorias no layout
-![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/p1-home.jpg)
-![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/p2-lista.jpg)
-![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/p3-additem.jpg)
-![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/p4-addEditList.jpg)
+![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/p1.jpg)
+![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/p2.jpg)
+![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/p3.jpg)
+![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/p4.jpg)
+![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/p5.jpg)
+![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/p6.jpg)
+![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/p7.jpg)
 
 
 
