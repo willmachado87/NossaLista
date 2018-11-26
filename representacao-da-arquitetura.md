@@ -23,5 +23,5 @@ a coleção e onde será armazenado todos dados necessários de um documento e e
 possui dados.
 
 Ex: listas(coleção) > uid(documento) > nome da lista, usuários e etc(dados)
-![Arquitetura da Solução](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/firebaseschea.jpg)
+![Arquitetura da Solução](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/firebaseschea2.jpg)
 
