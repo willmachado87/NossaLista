@@ -15,7 +15,3 @@ Os protótipos de alta fidelidade por enquanto são estes mas ainda será feita 
 ![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/p5.jpg)
 ![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/p6.jpg)
 ![image](https://raw.githubusercontent.com/willmachado87/NossaLista/master/imagens/p7.jpg)
-
-
-
-
