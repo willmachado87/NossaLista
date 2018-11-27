@@ -3,6 +3,9 @@ Documentação geral do projeto pode ser encontrada
 
 no medium https://medium.com/@wyllmachado/documentando-um-projeto-final-de-ads-6b40b160c763
 
+Caso queira baixar o APK do app esta disponível no momento somente para ANDROID VERSÃO 5(Lollipop) ou SUPERIOR: 
+https://drive.google.com/open?id=1Zd271uagrzQUbpNgE3cuRY_ytU1yIrAe
+
 Esse documento tem como objetivo fornecendo informações e artefatos sobre a concepção do produto, o seu planejamento, as decisões arquiteturais, desenvolvimento, testes/validação e conclusões.
 
 # Como Executar o projeto
